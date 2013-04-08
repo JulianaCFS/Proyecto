@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="TreeView.cs">
+    <Files>
+      <File FileName="MainWindow.cs" Line="4" Column="19" />
+      <File FileName="BebidasView.cs" Line="26" Column="28" />
+      <File FileName="TreeView.cs" Line="62" Column="65" />
+      <File FileName="ListStoreExtensions.cs" Line="19" Column="6" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
