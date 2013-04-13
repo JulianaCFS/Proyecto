@@ -27,9 +27,15 @@ namespace ProyectoCafeteria
 				
 			IDataReader dataReader = dbCommand.ExecuteReader ();
 			
+			
+			
 			TreeViewExtensions.Fill (treeView, dataReader);
 			dataReader.Close ();
 		}
+		
+		
+		
+
 	}
 }
 

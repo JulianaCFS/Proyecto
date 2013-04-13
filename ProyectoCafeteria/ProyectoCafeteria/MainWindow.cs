@@ -9,7 +9,7 @@ using ProyectoCafeteria;
 
 
 public partial class MainWindow: Gtk.Window
-{	private IDbConnection dbConnection;
+{	//private IDbConnection dbConnection;
 	public MainWindow (): base (Gtk.WindowType.Toplevel)
 	{
 		Build ();

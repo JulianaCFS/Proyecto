@@ -17,6 +17,7 @@ namespace Proyecto.Ad
 					Console.WriteLine("El iden es: {0} {1} ", dataReader[index].ToString (), index);
 					
 				}
+				values.Add("Selecciona una opcion");
 				listStore.AppendValues (values.ToArray());
 			}
 		}
