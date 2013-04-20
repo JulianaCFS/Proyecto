@@ -31,7 +31,7 @@ namespace Proyecto.Ad
 		// Values to be chosen in the ComboBox
 		Gtk.ListStore comboModel = new ListStore(typeof(string));
 		Gtk.ComboBox comboBox = new ComboBox(comboModel);
-		comboBox.AppendText("Selecciona una opcion");
+		comboBox.AppendText("Selecciona una cantidad");
 		comboBox.AppendText("1");
 		comboBox.AppendText("2");
 		comboBox.AppendText("3");
@@ -63,7 +63,7 @@ namespace Proyecto.Ad
 				tv.Model.SetValue(iter, 4, args.NewText); // the CellRendererText
 		}
 		
-		public static void Fill(TreeView treeView, IDataReader dataReader) 
+		public static ListStore Fill(TreeView treeView, IDataReader dataReader) 
 		{	
 			//TreeViewExtensions.ClearColumns (treeView);
 			TreeViewExtensions.AppendColumns (treeView, dataReader);		
@@ -72,6 +72,8 @@ namespace Proyecto.Ad
 			ListStore listStore = new ListStore(types);
 			treeView.Model = listStore;
 			ListStoreExtensions.Fill (listStore, dataReader);
+			
+			return listStore;
 		}
 		
 		/*public static void showEscogerOpcion(TreeView tv)

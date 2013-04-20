@@ -430,6 +430,7 @@
                 <property name="Type">TextOnly</property>
                 <property name="Label" translatable="yes">Aceptar</property>
                 <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnButton2Clicked" />
               </widget>
               <packing>
                 <property name="LeftAttach">1</property>

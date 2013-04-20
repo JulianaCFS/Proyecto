@@ -99,6 +99,7 @@ namespace ProyectoCafeteria
 			this.DefaultWidth = 400;
 			this.DefaultHeight = 300;
 			this.Show ();
+			this.button2.Clicked += new global::System.EventHandler (this.OnButton2Clicked);
 		}
 	}
 }

@@ -35,6 +35,9 @@ public partial class MainWindow: Gtk.Window
 		BebidasView bebidasView = new BebidasView();
 		bebidasView.Show();
 	}
+	
+	//la llamada del metodo que calcularas el total que estara en bebidasview que tendras como parametros el label 
+	//pantalla
 
 	protected void OnButton2Clicked (object sender, System.EventArgs e)
 	{

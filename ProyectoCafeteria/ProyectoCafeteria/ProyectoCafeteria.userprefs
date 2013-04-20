@@ -1,11 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="TreeView.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BebidasView.cs">
     <Files>
-      <File FileName="MainWindow.cs" Line="4" Column="19" />
-      <File FileName="BebidasView.cs" Line="26" Column="28" />
-      <File FileName="TreeView.cs" Line="21" Column="4" />
+      <File FileName="MainWindow.cs" Line="40" Column="12" />
+      <File FileName="BebidasView.cs" Line="34" Column="34" />
+      <File FileName="TreeView.cs" Line="15" Column="39" />
       <File FileName="Main.cs" Line="1" Column="1" />
+      <File FileName="ListStoreExtensions.cs" Line="34" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
