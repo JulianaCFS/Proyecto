@@ -80,4 +80,12 @@ public partial class MainWindow: Gtk.Window
 	{
 		throw new System.NotImplementedException ();
 	}
+
+	protected void OnBotonticketClicked (object sender, System.EventArgs e)
+	{
+		//throw new System.NotImplementedException ();
+			
+			TicketView ticketview = new TicketView();
+			ticketview.Show();
+	}
 }

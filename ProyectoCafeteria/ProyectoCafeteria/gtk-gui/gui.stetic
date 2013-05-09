@@ -52,12 +52,13 @@
             <property name="RowSpacing">6</property>
             <property name="ColumnSpacing">6</property>
             <child>
-              <widget class="Gtk.Button" id="button10">
+              <widget class="Gtk.Button" id="botonticket">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
                 <property name="Type">TextOnly</property>
                 <property name="Label" translatable="yes">Ticket</property>
                 <property name="UseUnderline">True</property>
+                <signal name="Clicked" handler="OnBotonticketClicked" />
               </widget>
               <packing>
                 <property name="LeftAttach">2</property>
@@ -515,7 +516,6 @@
         <child>
           <widget class="Gtk.Label" id="labelTotal">
             <property name="MemberName" />
-            <property name="Xalign">0,46</property>
             <property name="LabelProp" translatable="yes">Total:</property>
           </widget>
           <packing>
@@ -531,7 +531,7 @@
             <property name="CanFocus">True</property>
             <property name="ShadowType">In</property>
             <child>
-              <widget class="Gtk.TreeView" id="treeview2">
+              <widget class="Gtk.TreeView" id="treeview">
                 <property name="MemberName" />
                 <property name="CanFocus">True</property>
               </widget>

@@ -7,7 +7,7 @@ public partial class MainWindow
 	private global::Gtk.Fixed fixed4;
 	private global::Gtk.Label total;
 	private global::Gtk.Table table2;
-	private global::Gtk.Button button10;
+	private global::Gtk.Button botonticket;
 	private global::Gtk.Button button11;
 	private global::Gtk.Fixed fixed2;
 	private global::Gtk.Fixed fixed3;
@@ -63,13 +63,13 @@ public partial class MainWindow
 		this.table2.RowSpacing = ((uint)(6));
 		this.table2.ColumnSpacing = ((uint)(6));
 		// Container child table2.Gtk.Table+TableChild
-		this.button10 = new global::Gtk.Button ();
-		this.button10.CanFocus = true;
-		this.button10.Name = "button10";
-		this.button10.UseUnderline = true;
-		this.button10.Label = global::Mono.Unix.Catalog.GetString ("Ticket");
-		this.table2.Add (this.button10);
-		global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.table2 [this.button10]));
+		this.botonticket = new global::Gtk.Button ();
+		this.botonticket.CanFocus = true;
+		this.botonticket.Name = "botonticket";
+		this.botonticket.UseUnderline = true;
+		this.botonticket.Label = global::Mono.Unix.Catalog.GetString ("Ticket");
+		this.table2.Add (this.botonticket);
+		global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.table2 [this.botonticket]));
 		w3.LeftAttach = ((uint)(2));
 		w3.RightAttach = ((uint)(3));
 		w3.XOptions = ((global::Gtk.AttachOptions)(4));
@@ -234,6 +234,7 @@ public partial class MainWindow
 		this.DefaultHeight = 336;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
+		this.botonticket.Clicked += new global::System.EventHandler (this.OnBotonticketClicked);
 		this.button9.Clicked += new global::System.EventHandler (this.OnButton9Clicked);
 		this.button8.Clicked += new global::System.EventHandler (this.OnButton8Clicked);
 		this.button7.Clicked += new global::System.EventHandler (this.OnButton7Clicked);

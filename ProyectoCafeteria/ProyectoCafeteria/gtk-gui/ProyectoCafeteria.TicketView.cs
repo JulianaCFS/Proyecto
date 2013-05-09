@@ -7,7 +7,7 @@ namespace ProyectoCafeteria
 		private global::Gtk.VBox vbox1;
 		private global::Gtk.Label labelTotal;
 		private global::Gtk.ScrolledWindow scrolledwindow1;
-		private global::Gtk.TreeView treeview2;
+		private global::Gtk.TreeView treeview;
 		private global::Gtk.Table table1;
 		private global::Gtk.Button botonAceptar;
 		private global::Gtk.Button botonCancelar;
@@ -42,10 +42,10 @@ namespace ProyectoCafeteria
 			this.scrolledwindow1.Name = "scrolledwindow1";
 			this.scrolledwindow1.ShadowType = ((global::Gtk.ShadowType)(1));
 			// Container child scrolledwindow1.Gtk.Container+ContainerChild
-			this.treeview2 = new global::Gtk.TreeView ();
-			this.treeview2.CanFocus = true;
-			this.treeview2.Name = "treeview2";
-			this.scrolledwindow1.Add (this.treeview2);
+			this.treeview = new global::Gtk.TreeView ();
+			this.treeview.CanFocus = true;
+			this.treeview.Name = "treeview";
+			this.scrolledwindow1.Add (this.treeview);
 			this.vbox1.Add (this.scrolledwindow1);
 			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.scrolledwindow1]));
 			w3.Position = 1;

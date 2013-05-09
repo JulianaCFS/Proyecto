@@ -35,7 +35,7 @@ namespace ProyectoCafeteria
 			IDataReader dataReader = dbCommand.ExecuteReader ();
 			
 			
-			llenarTablaBebidasFrias (treeView, dataReader);//
+			llenarTablaBebidasFrias (treeView, dataReader);
 			dataReader.Close ();
 		}
 		
