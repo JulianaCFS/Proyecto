@@ -22,8 +22,3 @@ Funcionamiento del combo.Ventana BebidasView.
 3 Horas dedicadas.
 He puesto los códigos que estaban separados por clases, en la misma clase.
 Separándolos por métodos.Y funcionamiento del label "total" ventana mainWindows.
-
-/*** Fecha 04-05-2013*****/
-
-He dedicado 2 horas.
-Funcionamiento de los botones:inicio,aceptar,cancelar y ticket de la ventana de BebidasView.

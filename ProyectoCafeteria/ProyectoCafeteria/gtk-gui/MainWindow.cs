@@ -5,7 +5,7 @@ public partial class MainWindow
 {
 	private global::Gtk.VBox vbox1;
 	private global::Gtk.Fixed fixed4;
-	private global::Gtk.Label label3;
+	private global::Gtk.Label total;
 	private global::Gtk.Table table2;
 	private global::Gtk.Button button10;
 	private global::Gtk.Button button11;
@@ -14,7 +14,7 @@ public partial class MainWindow
 	private global::Gtk.Fixed fixed1;
 	private global::Gtk.HSeparator hseparator1;
 	private global::Gtk.Table table1;
-	private global::Gtk.Button button1;
+	private global::Gtk.Button botonBebidasFrias;
 	private global::Gtk.Button button2;
 	private global::Gtk.Button button3;
 	private global::Gtk.Button button4;
@@ -46,14 +46,14 @@ public partial class MainWindow
 		w1.Fill = false;
 		w1.Padding = ((uint)(5));
 		// Container child vbox1.Gtk.Box+BoxChild
-		this.label3 = new global::Gtk.Label ();
-		this.label3.Name = "label3";
-		this.label3.Xalign = 1F;
-		this.label3.LabelProp = global::Mono.Unix.Catalog.GetString ("Total:");
-		this.label3.Wrap = true;
-		this.label3.Justify = ((global::Gtk.Justification)(1));
-		this.vbox1.Add (this.label3);
-		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.label3]));
+		this.total = new global::Gtk.Label ();
+		this.total.Name = "total";
+		this.total.Xalign = 1F;
+		this.total.LabelProp = global::Mono.Unix.Catalog.GetString ("Total:");
+		this.total.Wrap = true;
+		this.total.Justify = ((global::Gtk.Justification)(1));
+		this.vbox1.Add (this.total);
+		global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.total]));
 		w2.Position = 1;
 		w2.Expand = false;
 		w2.Fill = false;
@@ -129,12 +129,12 @@ public partial class MainWindow
 		this.table1.RowSpacing = ((uint)(6));
 		this.table1.ColumnSpacing = ((uint)(6));
 		// Container child table1.Gtk.Table+TableChild
-		this.button1 = new global::Gtk.Button ();
-		this.button1.CanFocus = true;
-		this.button1.Name = "button1";
-		this.button1.UseUnderline = true;
-		this.button1.Label = global::Mono.Unix.Catalog.GetString ("Bebidas Frías");
-		this.table1.Add (this.button1);
+		this.botonBebidasFrias = new global::Gtk.Button ();
+		this.botonBebidasFrias.CanFocus = true;
+		this.botonBebidasFrias.Name = "botonBebidasFrias";
+		this.botonBebidasFrias.UseUnderline = true;
+		this.botonBebidasFrias.Label = global::Mono.Unix.Catalog.GetString ("Bebidas Frías");
+		this.table1.Add (this.botonBebidasFrias);
 		// Container child table1.Gtk.Table+TableChild
 		this.button2 = new global::Gtk.Button ();
 		this.button2.CanFocus = true;
@@ -242,6 +242,6 @@ public partial class MainWindow
 		this.button4.Clicked += new global::System.EventHandler (this.OnButton4Clicked);
 		this.button3.Clicked += new global::System.EventHandler (this.OnButton3Clicked);
 		this.button2.Clicked += new global::System.EventHandler (this.OnButton2Clicked);
-		this.button1.Clicked += new global::System.EventHandler (this.OnButton1Clicked);
+		this.botonBebidasFrias.Clicked += new global::System.EventHandler (this.OnBotonBebidasFriasClicked);
 	}
 }

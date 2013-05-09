@@ -75,9 +75,8 @@
     <Compile Include="DbCommandExtensions.cs" />
     <Compile Include="BebidasView.cs" />
     <Compile Include="gtk-gui\ProyectoCafeteria.BebidasView.cs" />
-    <Compile Include="TreeView.cs" />
-    <Compile Include="TypeExtensions.cs" />
-    <Compile Include="ListStoreExtensions.cs" />
+    <Compile Include="TicketView.cs" />
+    <Compile Include="gtk-gui\ProyectoCafeteria.TicketView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

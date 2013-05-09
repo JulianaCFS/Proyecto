@@ -10,6 +10,7 @@ using ProyectoCafeteria;
 
 public partial class MainWindow: Gtk.Window
 {	//private IDbConnection dbConnection;
+	
 	public MainWindow (): base (Gtk.WindowType.Toplevel)
 	{
 		Build ();
@@ -23,7 +24,7 @@ public partial class MainWindow: Gtk.Window
 		a.RetVal = true;
 	}
 
-	protected void OnButton1Clicked (object sender, System.EventArgs e)
+	protected void OnBotonBebidasFriasClicked (object sender, System.EventArgs e)
 	{
 		
 		showTablaBebidas();          
@@ -32,9 +33,10 @@ public partial class MainWindow: Gtk.Window
 	}
 	private void showTablaBebidas()
 	{
-		BebidasView bebidasView = new BebidasView();
+		BebidasView bebidasView = new BebidasView(total);
 		bebidasView.Show();
 	}
+	
 	
 	//la llamada del metodo que calcularas el total que estara en bebidasview que tendras como parametros el label 
 	//pantalla

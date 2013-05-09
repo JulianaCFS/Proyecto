@@ -63,7 +63,7 @@ namespace Proyecto.Ad
 				tv.Model.SetValue(iter, 4, args.NewText); // the CellRendererText
 		}
 		
-		public static ListStore Fill(TreeView treeView, IDataReader dataReader) 
+		public static void Fill(TreeView treeView, IDataReader dataReader) 
 		{	
 			//TreeViewExtensions.ClearColumns (treeView);
 			TreeViewExtensions.AppendColumns (treeView, dataReader);		
@@ -73,7 +73,7 @@ namespace Proyecto.Ad
 			treeView.Model = listStore;
 			ListStoreExtensions.Fill (listStore, dataReader);
 			
-			return listStore;
+			
 		}
 		
 		/*public static void showEscogerOpcion(TreeView tv)

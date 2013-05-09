@@ -8,10 +8,10 @@ namespace ProyectoCafeteria
 		private global::Gtk.ScrolledWindow GtkScrolledWindow;
 		private global::Gtk.TreeView treeView;
 		private global::Gtk.Table table1;
-		private global::Gtk.Button button1;
-		private global::Gtk.Button button2;
-		private global::Gtk.Button button3;
-		private global::Gtk.Button button4;
+		private global::Gtk.Button botonAceptar;
+		private global::Gtk.Button botonEliminar;
+		private global::Gtk.Button botonInicio;
+		private global::Gtk.Button botonTicket;
 		
 		protected virtual void Build ()
 		{
@@ -42,47 +42,47 @@ namespace ProyectoCafeteria
 			this.table1.RowSpacing = ((uint)(6));
 			this.table1.ColumnSpacing = ((uint)(6));
 			// Container child table1.Gtk.Table+TableChild
-			this.button1 = new global::Gtk.Button ();
-			this.button1.CanFocus = true;
-			this.button1.Name = "button1";
-			this.button1.UseUnderline = true;
-			this.button1.Label = global::Mono.Unix.Catalog.GetString ("Inicio");
-			this.table1.Add (this.button1);
-			global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.table1 [this.button1]));
+			this.botonAceptar = new global::Gtk.Button ();
+			this.botonAceptar.CanFocus = true;
+			this.botonAceptar.Name = "botonAceptar";
+			this.botonAceptar.UseUnderline = true;
+			this.botonAceptar.Label = global::Mono.Unix.Catalog.GetString ("Aceptar");
+			this.table1.Add (this.botonAceptar);
+			global::Gtk.Table.TableChild w3 = ((global::Gtk.Table.TableChild)(this.table1 [this.botonAceptar]));
+			w3.LeftAttach = ((uint)(1));
+			w3.RightAttach = ((uint)(2));
 			w3.XOptions = ((global::Gtk.AttachOptions)(4));
 			w3.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
-			this.button2 = new global::Gtk.Button ();
-			this.button2.CanFocus = true;
-			this.button2.Name = "button2";
-			this.button2.UseUnderline = true;
-			this.button2.Label = global::Mono.Unix.Catalog.GetString ("Aceptar");
-			this.table1.Add (this.button2);
-			global::Gtk.Table.TableChild w4 = ((global::Gtk.Table.TableChild)(this.table1 [this.button2]));
-			w4.LeftAttach = ((uint)(1));
-			w4.RightAttach = ((uint)(2));
+			this.botonEliminar = new global::Gtk.Button ();
+			this.botonEliminar.CanFocus = true;
+			this.botonEliminar.Name = "botonEliminar";
+			this.botonEliminar.UseUnderline = true;
+			this.botonEliminar.Label = global::Mono.Unix.Catalog.GetString ("Eliminar");
+			this.table1.Add (this.botonEliminar);
+			global::Gtk.Table.TableChild w4 = ((global::Gtk.Table.TableChild)(this.table1 [this.botonEliminar]));
+			w4.LeftAttach = ((uint)(2));
+			w4.RightAttach = ((uint)(3));
 			w4.XOptions = ((global::Gtk.AttachOptions)(4));
 			w4.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
-			this.button3 = new global::Gtk.Button ();
-			this.button3.CanFocus = true;
-			this.button3.Name = "button3";
-			this.button3.UseUnderline = true;
-			this.button3.Label = global::Mono.Unix.Catalog.GetString ("Cancelar");
-			this.table1.Add (this.button3);
-			global::Gtk.Table.TableChild w5 = ((global::Gtk.Table.TableChild)(this.table1 [this.button3]));
-			w5.LeftAttach = ((uint)(2));
-			w5.RightAttach = ((uint)(3));
+			this.botonInicio = new global::Gtk.Button ();
+			this.botonInicio.CanFocus = true;
+			this.botonInicio.Name = "botonInicio";
+			this.botonInicio.UseUnderline = true;
+			this.botonInicio.Label = global::Mono.Unix.Catalog.GetString ("Inicio");
+			this.table1.Add (this.botonInicio);
+			global::Gtk.Table.TableChild w5 = ((global::Gtk.Table.TableChild)(this.table1 [this.botonInicio]));
 			w5.XOptions = ((global::Gtk.AttachOptions)(4));
 			w5.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
-			this.button4 = new global::Gtk.Button ();
-			this.button4.CanFocus = true;
-			this.button4.Name = "button4";
-			this.button4.UseUnderline = true;
-			this.button4.Label = global::Mono.Unix.Catalog.GetString ("Ticket");
-			this.table1.Add (this.button4);
-			global::Gtk.Table.TableChild w6 = ((global::Gtk.Table.TableChild)(this.table1 [this.button4]));
+			this.botonTicket = new global::Gtk.Button ();
+			this.botonTicket.CanFocus = true;
+			this.botonTicket.Name = "botonTicket";
+			this.botonTicket.UseUnderline = true;
+			this.botonTicket.Label = global::Mono.Unix.Catalog.GetString ("Ticket");
+			this.table1.Add (this.botonTicket);
+			global::Gtk.Table.TableChild w6 = ((global::Gtk.Table.TableChild)(this.table1 [this.botonTicket]));
 			w6.LeftAttach = ((uint)(3));
 			w6.RightAttach = ((uint)(4));
 			w6.XOptions = ((global::Gtk.AttachOptions)(4));
@@ -99,7 +99,10 @@ namespace ProyectoCafeteria
 			this.DefaultWidth = 400;
 			this.DefaultHeight = 300;
 			this.Show ();
-			this.button2.Clicked += new global::System.EventHandler (this.OnButton2Clicked);
+			this.botonTicket.Clicked += new global::System.EventHandler (this.OnBotonTicketClicked);
+			this.botonInicio.Clicked += new global::System.EventHandler (this.OnBotonInicioClicked);
+			this.botonEliminar.Clicked += new global::System.EventHandler (this.OnBotonEliminarClicked);
+			this.botonAceptar.Clicked += new global::System.EventHandler (this.OnBotonAceptarClicked);
 		}
 	}
 }
