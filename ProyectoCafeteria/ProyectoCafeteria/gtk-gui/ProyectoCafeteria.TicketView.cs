@@ -8,6 +8,11 @@ namespace ProyectoCafeteria
 		private global::Gtk.Label labelTotal;
 		private global::Gtk.ScrolledWindow scrolledwindow1;
 		private global::Gtk.TreeView treeview;
+		private global::Gtk.Table table2;
+		private global::Gtk.SpinButton cantidadPersona;
+		private global::Gtk.Fixed fixed4;
+		private global::Gtk.Fixed fixed5;
+		private global::Gtk.Label numpersonas;
 		private global::Gtk.Table table1;
 		private global::Gtk.Button botonAceptar;
 		private global::Gtk.Button botonCancelar;
@@ -50,6 +55,56 @@ namespace ProyectoCafeteria
 			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.scrolledwindow1]));
 			w3.Position = 1;
 			// Container child vbox1.Gtk.Box+BoxChild
+			this.table2 = new global::Gtk.Table (((uint)(1)), ((uint)(4)), false);
+			this.table2.Name = "table2";
+			this.table2.RowSpacing = ((uint)(6));
+			this.table2.ColumnSpacing = ((uint)(6));
+			// Container child table2.Gtk.Table+TableChild
+			this.cantidadPersona = new global::Gtk.SpinButton (1, 100, 1);
+			this.cantidadPersona.CanFocus = true;
+			this.cantidadPersona.Name = "cantidadPersona";
+			this.cantidadPersona.Adjustment.PageIncrement = 10;
+			this.cantidadPersona.ClimbRate = 1;
+			this.cantidadPersona.Numeric = true;
+			this.cantidadPersona.Value = 1;
+			this.table2.Add (this.cantidadPersona);
+			global::Gtk.Table.TableChild w4 = ((global::Gtk.Table.TableChild)(this.table2 [this.cantidadPersona]));
+			w4.LeftAttach = ((uint)(3));
+			w4.RightAttach = ((uint)(4));
+			w4.XOptions = ((global::Gtk.AttachOptions)(4));
+			w4.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table2.Gtk.Table+TableChild
+			this.fixed4 = new global::Gtk.Fixed ();
+			this.fixed4.Name = "fixed4";
+			this.fixed4.HasWindow = false;
+			this.table2.Add (this.fixed4);
+			global::Gtk.Table.TableChild w5 = ((global::Gtk.Table.TableChild)(this.table2 [this.fixed4]));
+			w5.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table2.Gtk.Table+TableChild
+			this.fixed5 = new global::Gtk.Fixed ();
+			this.fixed5.Name = "fixed5";
+			this.fixed5.HasWindow = false;
+			this.table2.Add (this.fixed5);
+			global::Gtk.Table.TableChild w6 = ((global::Gtk.Table.TableChild)(this.table2 [this.fixed5]));
+			w6.LeftAttach = ((uint)(1));
+			w6.RightAttach = ((uint)(2));
+			w6.YOptions = ((global::Gtk.AttachOptions)(4));
+			// Container child table2.Gtk.Table+TableChild
+			this.numpersonas = new global::Gtk.Label ();
+			this.numpersonas.Name = "numpersonas";
+			this.numpersonas.LabelProp = global::Mono.Unix.Catalog.GetString ("Número de personas");
+			this.table2.Add (this.numpersonas);
+			global::Gtk.Table.TableChild w7 = ((global::Gtk.Table.TableChild)(this.table2 [this.numpersonas]));
+			w7.LeftAttach = ((uint)(2));
+			w7.RightAttach = ((uint)(3));
+			w7.XOptions = ((global::Gtk.AttachOptions)(4));
+			w7.YOptions = ((global::Gtk.AttachOptions)(4));
+			this.vbox1.Add (this.table2);
+			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.table2]));
+			w8.Position = 2;
+			w8.Expand = false;
+			w8.Fill = false;
+			// Container child vbox1.Gtk.Box+BoxChild
 			this.table1 = new global::Gtk.Table (((uint)(1)), ((uint)(6)), false);
 			this.table1.Name = "table1";
 			this.table1.RowSpacing = ((uint)(6));
@@ -61,21 +116,21 @@ namespace ProyectoCafeteria
 			this.botonAceptar.UseUnderline = true;
 			this.botonAceptar.Label = global::Mono.Unix.Catalog.GetString ("Aceptar");
 			this.table1.Add (this.botonAceptar);
-			global::Gtk.Table.TableChild w4 = ((global::Gtk.Table.TableChild)(this.table1 [this.botonAceptar]));
-			w4.LeftAttach = ((uint)(3));
-			w4.RightAttach = ((uint)(4));
-			w4.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w9 = ((global::Gtk.Table.TableChild)(this.table1 [this.botonAceptar]));
+			w9.LeftAttach = ((uint)(3));
+			w9.RightAttach = ((uint)(4));
+			w9.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
 			this.botonCancelar = new global::Gtk.Button ();
 			this.botonCancelar.CanFocus = true;
 			this.botonCancelar.Name = "botonCancelar";
 			this.botonCancelar.UseUnderline = true;
-			this.botonCancelar.Label = global::Mono.Unix.Catalog.GetString ("Cancelar");
+			this.botonCancelar.Label = global::Mono.Unix.Catalog.GetString ("Cancelar pedido");
 			this.table1.Add (this.botonCancelar);
-			global::Gtk.Table.TableChild w5 = ((global::Gtk.Table.TableChild)(this.table1 [this.botonCancelar]));
-			w5.LeftAttach = ((uint)(4));
-			w5.RightAttach = ((uint)(5));
-			w5.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w10 = ((global::Gtk.Table.TableChild)(this.table1 [this.botonCancelar]));
+			w10.LeftAttach = ((uint)(4));
+			w10.RightAttach = ((uint)(5));
+			w10.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
 			this.botonEliminar = new global::Gtk.Button ();
 			this.botonEliminar.CanFocus = true;
@@ -83,40 +138,40 @@ namespace ProyectoCafeteria
 			this.botonEliminar.UseUnderline = true;
 			this.botonEliminar.Label = global::Mono.Unix.Catalog.GetString ("Eliminar");
 			this.table1.Add (this.botonEliminar);
-			global::Gtk.Table.TableChild w6 = ((global::Gtk.Table.TableChild)(this.table1 [this.botonEliminar]));
-			w6.LeftAttach = ((uint)(5));
-			w6.RightAttach = ((uint)(6));
-			w6.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w11 = ((global::Gtk.Table.TableChild)(this.table1 [this.botonEliminar]));
+			w11.LeftAttach = ((uint)(5));
+			w11.RightAttach = ((uint)(6));
+			w11.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
 			this.fixed1 = new global::Gtk.Fixed ();
 			this.fixed1.Name = "fixed1";
 			this.fixed1.HasWindow = false;
 			this.table1.Add (this.fixed1);
-			global::Gtk.Table.TableChild w7 = ((global::Gtk.Table.TableChild)(this.table1 [this.fixed1]));
-			w7.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w12 = ((global::Gtk.Table.TableChild)(this.table1 [this.fixed1]));
+			w12.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
 			this.fixed2 = new global::Gtk.Fixed ();
 			this.fixed2.Name = "fixed2";
 			this.fixed2.HasWindow = false;
 			this.table1.Add (this.fixed2);
-			global::Gtk.Table.TableChild w8 = ((global::Gtk.Table.TableChild)(this.table1 [this.fixed2]));
-			w8.LeftAttach = ((uint)(1));
-			w8.RightAttach = ((uint)(2));
-			w8.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w13 = ((global::Gtk.Table.TableChild)(this.table1 [this.fixed2]));
+			w13.LeftAttach = ((uint)(1));
+			w13.RightAttach = ((uint)(2));
+			w13.YOptions = ((global::Gtk.AttachOptions)(4));
 			// Container child table1.Gtk.Table+TableChild
 			this.fixed3 = new global::Gtk.Fixed ();
 			this.fixed3.Name = "fixed3";
 			this.fixed3.HasWindow = false;
 			this.table1.Add (this.fixed3);
-			global::Gtk.Table.TableChild w9 = ((global::Gtk.Table.TableChild)(this.table1 [this.fixed3]));
-			w9.LeftAttach = ((uint)(2));
-			w9.RightAttach = ((uint)(3));
-			w9.YOptions = ((global::Gtk.AttachOptions)(4));
+			global::Gtk.Table.TableChild w14 = ((global::Gtk.Table.TableChild)(this.table1 [this.fixed3]));
+			w14.LeftAttach = ((uint)(2));
+			w14.RightAttach = ((uint)(3));
+			w14.YOptions = ((global::Gtk.AttachOptions)(4));
 			this.vbox1.Add (this.table1);
-			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.table1]));
-			w10.Position = 2;
-			w10.Expand = false;
-			w10.Fill = false;
+			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.table1]));
+			w15.Position = 3;
+			w15.Expand = false;
+			w15.Fill = false;
 			this.Add (this.vbox1);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
