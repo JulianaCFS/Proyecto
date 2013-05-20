@@ -29,8 +29,10 @@ public partial class MainWindow
 		global::Stetic.Gui.Initialize (this);
 		// Widget MainWindow
 		this.Name = "MainWindow";
-		this.Title = global::Mono.Unix.Catalog.GetString ("MainWindow");
-		this.WindowPosition = ((global::Gtk.WindowPosition)(4));
+		this.Title = global::Mono.Unix.Catalog.GetString ("Cafetería Torroners - Inicio");
+		this.Icon = global::Stetic.IconLoader.LoadIcon (this, "gtk-about", global::Gtk.IconSize.Menu);
+		this.TypeHint = ((global::Gdk.WindowTypeHint)(2));
+		this.WindowPosition = ((global::Gtk.WindowPosition)(3));
 		// Container child MainWindow.Gtk.Container+ContainerChild
 		this.vbox1 = new global::Gtk.VBox ();
 		this.vbox1.Name = "vbox1";
@@ -230,8 +232,8 @@ public partial class MainWindow
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
 		}
-		this.DefaultWidth = 497;
-		this.DefaultHeight = 336;
+		this.DefaultWidth = 702;
+		this.DefaultHeight = 501;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		this.botonticket.Clicked += new global::System.EventHandler (this.OnBotonticketClicked);

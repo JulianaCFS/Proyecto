@@ -19,7 +19,9 @@ namespace ProyectoCafeteria
 				base(Gtk.WindowType.Toplevel)
 		{
 			this.Build ();
+			labelBF.Markup = "<span size='xx-large' weight='bold'>Bebidas Frias</span>";
 			
+
 			total = labelTotal;
 			//para conectarse a la bd 
 			string connectionString = "Server=localhost;Database=dbprueba;User Id=dbprueba;Password=Juliana";
@@ -33,62 +35,31 @@ namespace ProyectoCafeteria
 				"select * from bebidasfrias ";
 				
 			IDataReader dataReader = dbCommand.ExecuteReader ();
-			
-			
+
 			llenarTablaBebidasFrias (treeView, dataReader);
 			dataReader.Close ();
 		}
 		
 		public  void AppendColumns(TreeView treeView, IDataReader dataReader)
 		{
-			
-			
+
 			for (int index = 0; index < dataReader.FieldCount; index++)
 			{
-				Console.WriteLine("el indice es: {0}", index);
+				//Console.WriteLine("el indice es: {0}", index);
 				treeView.AppendColumn (dataReader.GetName (index), new CellRendererText(), "text", index);
 			
 			}
 	
-			
-			Gtk.ListStore listStoreCombo = new ListStore(typeof(string));
-			treeView.Model = listStoreCombo;
-			
-			// Values to be chosen in the ComboBox
-			Gtk.ListStore comboModel = new ListStore(typeof(string));
-			Gtk.ComboBox comboBox = new ComboBox(comboModel);
-			comboBox.AppendText("Selecciona una cantidad");
-			comboBox.AppendText("1");
-			comboBox.AppendText("2");
-			comboBox.AppendText("3");
-			comboBox.Active = 0;
-			
-			Gtk.TreeViewColumn comboCol = new TreeViewColumn();
-			Gtk.CellRendererCombo comboCell = new CellRendererCombo();
-			comboCol.Title = "Combo Column";
-			comboCol.PackStart(comboCell, true);
-			comboCol.AddAttribute(comboCell, "text", 4);
-			comboCell.Editable = true;
-			comboCell.Edited += OnEdited;
-			comboCell.TextColumn = 0;
-			comboCell.Text = comboBox.ActiveText;
-			comboCell.Model = comboModel;
-			comboCell.WidthChars = 20;
-			
-			treeView.AppendColumn(comboCol);
-		
-		
+			//Añadimos la columna de la cantidad porque en la BBDD no tenemos este campo.
+			TreeViewColumn cantidad = new TreeViewColumn();
+			cantidad.Title = "Cantidad";
+			CellRendererText cant = new CellRendererText();
+			cantidad.PackStart(cant, true);
+			cantidad.AddAttribute(cant,"text",4);
+
+			treeView.AppendColumn(cantidad);
 		}
-		
-		public  void OnEdited(object sender, Gtk.EditedArgs args)
-		{
-				Gtk.TreeSelection selection = treeView.Selection;
-				Gtk.TreeIter iter;
-				selection.GetSelected(out iter);
-				
-				treeView.Model.SetValue(iter, 4, args.NewText); // the CellRendererText
-		}
-		
+
 		public  void llenarTablaBebidasFrias(TreeView treeView, IDataReader dataReader) 
 		{	
 			//TreeViewExtensions.ClearColumns (treeView);
@@ -117,17 +88,16 @@ namespace ProyectoCafeteria
 				for (int index = 0; index < dataReader.FieldCount; index++)
 				{
 					values.Add (dataReader[index].ToString ());
-					Console.WriteLine("El iden es: {0} {1} ", dataReader[index].ToString (), index);
+					//Console.WriteLine("El iden es: {0} {1} ", dataReader[index].ToString (), index);
 					
 				}
-				values.Add("Selecciona una cantidad");
+				values.Add("0");
 				listStore.AppendValues (values.ToArray());
 			}
 		}
 
 		protected void OnBotonAceptarClicked (object sender, System.EventArgs e)
 		{
-			treeView.Model = listStore;
 			TreeModel tModel;
 			treeView.Selection.Mode = SelectionMode.Multiple;
 			TreeSelection tSelect = treeView.Selection;
@@ -137,26 +107,25 @@ namespace ProyectoCafeteria
 			foreach(TreePath tPath in treePaths)
 			{
 				TreeIter iter;
-				
+
 				if(listStore.GetIter(out iter, tPath))
 				{
-					
 					string nombre = (string)listStore.GetValue(iter,1);
 					string tamano = (string)listStore.GetValue(iter,2);
 					string precio = (string)listStore.GetValue(iter,3);
 					string cantidad = (string)listStore.GetValue(iter,4);
 					
-					/*Console.WriteLine("Nombre :" + nombre);
+				/*	Console.WriteLine("Nombre :" + nombre);
 					Console.WriteLine("Tipo :" + tamano);
 					Console.WriteLine("Precio :" + precio);
 					Console.WriteLine("Cantidad :" + cantidad);*/
-					if(!cantidad.Equals("Selecciona una cantidad"))
+
+					if(!cantidad.Equals("0"))
 					{
 						IDbCommand dbCommand = dbConnection.CreateCommand ();
 						
 						dbCommand.CommandText = "insert into pedidos (nombre, tamano, precio,cantidad) values (:nombre, :tamano, :precio,:cantidad)";
-						
-						
+
 						DbCommandExtensions.AddParameter (dbCommand, "nombre",nombre);
 						DbCommandExtensions.AddParameter (dbCommand, "tamano", tamano);
 						DbCommandExtensions.AddParameter (dbCommand, "precio", Convert.ToDouble(precio));
@@ -171,45 +140,31 @@ namespace ProyectoCafeteria
 			}
 			calculoLabelTotal();
 			}
+
 			public void calculoLabelTotal()
 			{
 			
 				double precioTotal= 0;
-				//para conectarse a la bd 
-			string connectionString = "Server=localhost;Database=dbprueba;User Id=dbprueba;Password=Juliana";
-			ApplicationContext.Instance.DbConnection = new NpgsqlConnection(connectionString);
-			dbConnection = ApplicationContext.Instance.DbConnection;
-			dbConnection.Open ();
-			
-			//hacer la consulta bd
-			IDbCommand dbCommand = dbConnection.CreateCommand ();
-			dbCommand.CommandText = 
-				"select precio,cantidad from pedidos ";
 				
-			IDataReader dataReader = dbCommand.ExecuteReader ();
-			
-			while(dataReader.Read ()) {
+				//hacer la consulta bd
+				IDbCommand dbCommand = dbConnection.CreateCommand ();
+				dbCommand.CommandText =  "select precio,cantidad from pedidos ";
 				
-				//for (int index = 0; index < dataReader.FieldCount; index++)
-				//{
-					
+				IDataReader dataReader = dbCommand.ExecuteReader ();
+			
+				while(dataReader.Read ()) {
+
 					double precio = dataReader.GetDouble(0);
 					int cantidad = dataReader.GetInt32(1);
 					precioTotal = precioTotal+(precio * cantidad);
-				Console.WriteLine("El precio y la cantidad es: {0}", precioTotal);
 					
-				//}
-			}
-			
-				total.Text = "Total: "+Convert.ToString(precioTotal)+ " Euros";
+				}
+
+				total.Markup = "<span size='xx-large' weight='bold'>"+ "Total: "+Convert.ToString(precioTotal)+ " Euros"+ "</span>";
 			
 				dataReader.Close ();
-			
-			
-			
-			
-			}
 
+			}
 		
 		protected void OnBotonInicioClicked (object sender, System.EventArgs e)
 		{
@@ -221,7 +176,7 @@ namespace ProyectoCafeteria
 			//throw new System.NotImplementedException ();
 			TreeIter treeIter;
 			treeView.Selection.GetSelected(out treeIter);
-			treeView.Model.SetValue(treeIter, 4, "Selecciona una cantidad");
+			treeView.Model.SetValue(treeIter, 4, "0");
 		}
 		
 
@@ -233,6 +188,20 @@ namespace ProyectoCafeteria
 			ticketView.Show();
 			
 		}
+
+		protected void OnTreeViewRowActivated (object o, RowActivatedArgs args)
+		{
+			TreeModel model;
+			//registro seleccionado
+			TreeIter iterSelected;
+
+			if (treeView.Selection.GetSelected (out model, out iterSelected)) {
+				string cantidad = (string)model.GetValue (iterSelected, 4);
+			
+				SeleccionCantidad pantallaseleccion = new SeleccionCantidad (treeView, cantidad, 1, labelBF);
+				pantallaseleccion.Show ();
+		}
+	}
 	}
 }
 

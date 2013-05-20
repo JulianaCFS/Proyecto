@@ -1,11 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../../.cache/.fr-WbOJni/ProyectoCafeteria/MainWindow.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BebidasView.cs">
     <Files>
-      <File FileName="MainWindow.cs" Line="88" Column="28" />
-      <File FileName="BebidasView.cs" Line="1" Column="1" />
-      <File FileName="TicketView.cs" Line="1" Column="1" />
-      <File FileName="../../../.cache/.fr-WbOJni/ProyectoCafeteria/MainWindow.cs" Line="2" Column="11" />
+      <File FileName="MainWindow.cs" Line="17" Column="7" />
+      <File FileName="BebidasView.cs" Line="167" Column="5" />
+      <File FileName="TicketView.cs" Line="142" Column="90" />
+      <File FileName="SeleccionCantidad.cs" Line="62" Column="55" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

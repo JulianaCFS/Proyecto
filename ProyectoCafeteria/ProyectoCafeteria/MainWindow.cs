@@ -14,7 +14,7 @@ public partial class MainWindow: Gtk.Window
 	public MainWindow (): base (Gtk.WindowType.Toplevel)
 	{
 		Build ();
-		
+		total.Markup = "<span size='xx-large' weight='bold'>Total: 0,0 Euros</span>";
 	
 	}
 	
@@ -43,7 +43,7 @@ public partial class MainWindow: Gtk.Window
 
 	protected void OnButton2Clicked (object sender, System.EventArgs e)
 	{
-		throw new System.NotImplementedException ();
+		//throw new System.NotImplementedException ();
 	}
 
 	protected void OnButton3Clicked (object sender, System.EventArgs e)

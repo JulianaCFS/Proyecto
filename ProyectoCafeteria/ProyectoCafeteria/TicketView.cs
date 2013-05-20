@@ -34,7 +34,10 @@ namespace ProyectoCafeteria
 
 		protected void OnBotonAceptarClicked (object sender, System.EventArgs e)
 		{
-			throw new System.NotImplementedException ();
+			//throw new System.NotImplementedException ();
+			ImprimirTicket imprimirTicket = new ImprimirTicket();
+			imprimirTicket.Show();
+			this.Destroy ();
 		}
 
 		protected void OnBotonCancelarClicked (object sender, System.EventArgs e)
@@ -77,7 +80,7 @@ namespace ProyectoCafeteria
 			
 			for (int index = 0; index < dataReader.FieldCount-1; index++)
 			{
-				Console.WriteLine("el indice es: {0}", index);
+				//Console.WriteLine("el indice es: {0}", index);
 				if(index == 0)
 					treeView.AppendColumn (dataReader.GetName (index), new CellRendererText(), "text", index).Visible=false;
 				else
@@ -85,68 +88,18 @@ namespace ProyectoCafeteria
 				
 			
 			}
-			Gtk.ListStore listStoreCombo = new ListStore(typeof(string));
-			treeView.Model = listStoreCombo;
-			
-			// Values to be chosen in the ComboBox
-			Gtk.ListStore comboModel = new ListStore(typeof(string));
-			Gtk.ComboBox comboBox = new ComboBox(comboModel);
-			comboBox.AppendText("Selecciona una cantidad");
-			comboBox.AppendText("1");
-			comboBox.AppendText("2");
-			comboBox.AppendText("3");
-			comboBox.Active = 0;
-			
-			Gtk.TreeViewColumn comboCol = new TreeViewColumn();
-			Gtk.CellRendererCombo comboCell = new CellRendererCombo();
-			comboCol.Title = "Combo Cantidad";
-			comboCol.PackStart(comboCell, true);
-			comboCol.AddAttribute(comboCell, "text", 4);
-			comboCell.Editable = true;
-			comboCell.Edited += OnEdited;
-			comboCell.TextColumn = 0;
-			comboCell.Text = comboBox.ActiveText;
-			comboCell.Model = comboModel;
-			comboCell.WidthChars = 20;
-			
-			treeView.AppendColumn(comboCol);
 		
+			//Añadimos la columna de la cantidad porque en la BBDD no tenemos este campo.
+			TreeViewColumn cantidad = new TreeViewColumn();
+			cantidad.Title = "Cantidad";
+			CellRendererText cant = new CellRendererText();
+			cantidad.PackStart(cant, true);
+			cantidad.AddAttribute(cant,"text",4);
+
+			treeView.AppendColumn(cantidad);
 		
 		}
-		
-		public  void OnEdited(object sender, Gtk.EditedArgs args)
-		{
-				Gtk.TreeSelection selection = treeview.Selection;
-				Gtk.TreeIter iter;
-				selection.GetSelected(out iter);
-		
-				treeview.Model.SetValue(iter, 4, args.NewText); // the CellRendererText
-			
-			    liststore = (ListStore)treeview.Model;
-		        long id = long.Parse (liststore.GetValue (iter, 0).ToString ());
-				actualizarPedido(args.NewText, id);
-		}
-		public void actualizarPedido(String cantidad,long id){
-			
-			string connectionString = "Server=localhost;Database=dbprueba;User Id=dbprueba;Password=Juliana";
-			ApplicationContext.Instance.DbConnection = new NpgsqlConnection(connectionString);
-			dbConnection = ApplicationContext.Instance.DbConnection;
-			dbConnection.Open ();
-			
-			//hacer la consulta bd
-			IDbCommand dbCommand = dbConnection.CreateCommand ();
-			dbCommand.CommandText = 
-				 "update pedidos set cantidad=:cantidad where id=:id";
-			
-			DbCommandExtensions.AddParameter (dbCommand, "cantidad", cantidad);
-			DbCommandExtensions.AddParameter (dbCommand, "id", id);
-				
-			dbCommand.ExecuteNonQuery ();
-			totalTicket();
-		
-			
-		}
-		
+	
 		//método que devuelve el tipo a rellenar el treeview
 		public static Type[] GetTypes(Type type, int count)
 		{
@@ -155,40 +108,44 @@ namespace ProyectoCafeteria
 				types.Add(type);
 			return types.ToArray ();
 		}
-		public void totalTicket(){
+
+		public void totalTicket()
+		{
 			
-			double precioTotal= 0;
-				//para conectarse a la bd 
-			string connectionString = "Server=localhost;Database=dbprueba;User Id=dbprueba;Password=Juliana";
-			ApplicationContext.Instance.DbConnection = new NpgsqlConnection(connectionString);
-			dbConnection = ApplicationContext.Instance.DbConnection;
-			dbConnection.Open ();
-			
-			//hacer la consulta bd
-			IDbCommand dbCommand = dbConnection.CreateCommand ();
-			dbCommand.CommandText = 
-				"select precio,cantidad from pedidos ";
+				double precioTotal= 0;
+
+				IDbCommand dbCommand = dbConnection.CreateCommand ();
+				dbCommand.CommandText = "select precio,cantidad from pedidos ";
 				
-			IDataReader dataReader = dbCommand.ExecuteReader ();
+				IDataReader dataReader = dbCommand.ExecuteReader ();
 			
-			while(dataReader.Read ()) {
-				
-				//for (int index = 0; index < dataReader.FieldCount; index++)
-				//{
-					
+				while(dataReader.Read ()) {
+
 					double precio = dataReader.GetDouble(0);
 					int cantidad = dataReader.GetInt32(1);
 					precioTotal = precioTotal+(precio * cantidad);
-				Console.WriteLine("El precio y la cantidad es: {0}", precioTotal);
-					
-				//}
-			}
-			
-				labelTotal.Text = "Total: "+Convert.ToString(precioTotal)+ " Euros";
-			
+				//Console.WriteLine("El precio y la cantidad es: {0}", precioTotal);
+
+				}	
+
+				labelTotalTicket.Markup = "<span size='xx-large' weight='bold'>"+ "Total: "+Convert.ToString(precioTotal)+ " Euros"+ "</span>";
 				dataReader.Close ();
 			
 		}
+
+		protected void OnTreeviewRowActivated (object o, RowActivatedArgs args)
+		{
+			TreeModel model;
+			//registro seleccionado
+			TreeIter iterSelected;
+
+			if (treeview.Selection.GetSelected (out model, out iterSelected)) {
+				string cantidad = (string)model.GetValue (iterSelected, 4);
+
+				SeleccionCantidad pantallaseleccion = new SeleccionCantidad (treeview, cantidad, 0, labelTotalTicket);
+				pantallaseleccion.Show ();
+		}
+	}
 	}
 }
 

@@ -31,5 +31,11 @@ Funcionamiento de los botones:inicio,aceptar,cancelar y ticket de la ventana de 
 /*** Fecha 11-05-2013*****/
 
 2 Horas y 30 Minutos.
-Modificaciones en la tabla de TicketView.
+Modificaciones en la ventana de TicketView.
+
+/*** Fecha 18-05-2013*****/
+
+3 Horas.
+Funcionamiento de las ventanas SeleccionCantidad y ImprimirTicket.
+Cambios de los tamaños de los labels total,labelBF y labelTotal.
 

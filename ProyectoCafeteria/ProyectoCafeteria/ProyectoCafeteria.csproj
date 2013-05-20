@@ -77,6 +77,10 @@
     <Compile Include="gtk-gui\ProyectoCafeteria.BebidasView.cs" />
     <Compile Include="TicketView.cs" />
     <Compile Include="gtk-gui\ProyectoCafeteria.TicketView.cs" />
+    <Compile Include="SeleccionCantidad.cs" />
+    <Compile Include="gtk-gui\ProyectoCafeteria.SeleccionCantidad.cs" />
+    <Compile Include="ImprimirTicket.cs" />
+    <Compile Include="gtk-gui\ProyectoCafeteria.ImprimirTicket.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
