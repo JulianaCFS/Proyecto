@@ -11,10 +11,15 @@ namespace ProyectoCafeteria
 {
 	public partial class ImprimirTicket : Gtk.Window
 	{	private IDbConnection dbConnection;
-		public ImprimirTicket () : 
+		private Label totalMain;
+		private Button botonNuevoPedido;
+		public ImprimirTicket (Label labelTotal,Button botonNP) : 
 				base(Gtk.WindowType.Toplevel)
 		{
 			this.Build ();
+			
+			totalMain = labelTotal;
+			botonNuevoPedido = botonNP;
 		}
 
 		protected void OnBotonAceptarClicked (object sender, System.EventArgs e)
@@ -32,6 +37,10 @@ namespace ProyectoCafeteria
 			
 			IDataReader datareader = dbCommand.ExecuteReader ();
 			datareader.Close ();
+			
+			totalMain.Markup = "<span size='xx-large' weight='bold'>Inicie Pedido   Total: 0,0 Euros</span>";
+			botonNuevoPedido.Visible=false;
+			
 				
 			this.Destroy ();
 		}

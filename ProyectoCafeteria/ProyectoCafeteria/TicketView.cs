@@ -11,9 +11,14 @@ namespace ProyectoCafeteria
 	public partial class TicketView : Gtk.Window
 	{	private IDbConnection dbConnection;
 		private ListStore liststore;//listStore que utilizo para todos los métodos.
-		public TicketView () : base(Gtk.WindowType.Toplevel)
+		private Label totalMain;
+		private Button botonNuevoPedido;
+		public TicketView (Label labelMain, Button botonNP) : base(Gtk.WindowType.Toplevel)
 		{
 			this.Build ();
+			totalMain = labelMain;
+			botonNuevoPedido = botonNP;
+			
 			string connectionString = "Server=localhost;Database=dbprueba;User Id=dbprueba;Password=Juliana";
 			ApplicationContext.Instance.DbConnection = new NpgsqlConnection(connectionString);
 			dbConnection = ApplicationContext.Instance.DbConnection;
@@ -35,19 +40,22 @@ namespace ProyectoCafeteria
 		protected void OnBotonAceptarClicked (object sender, System.EventArgs e)
 		{
 			//throw new System.NotImplementedException ();
-			ImprimirTicket imprimirTicket = new ImprimirTicket();
+			ImprimirTicket imprimirTicket = new ImprimirTicket(totalMain,botonNuevoPedido);//le paso el label del total, para que cuando imprima el ticket, poner pantalla inicio el total a 0
 			imprimirTicket.Show();
 			this.Destroy ();
 		}
 
 		protected void OnBotonCancelarClicked (object sender, System.EventArgs e)
 		{
-			throw new System.NotImplementedException ();
+			//throw new System.NotImplementedException ();
+			TreeIter treeIter;
+			treeview.Selection.GetSelected(out treeIter);
+			treeview.Model.SetValue(treeIter, 4, "0");
 		}
 
 		protected void OnBotonEliminarClicked (object sender, System.EventArgs e)
 		{
-			throw new System.NotImplementedException ();
+			//throw new System.NotImplementedException ();
 		}
 		public  void mostrarTablaPedidos(TreeView treeview, IDataReader datareader) 
 		{	

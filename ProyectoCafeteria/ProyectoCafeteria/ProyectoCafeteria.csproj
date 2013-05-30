@@ -59,6 +59,7 @@
     <Reference Include="Mono.Posix" />
     <Reference Include="Npgsql" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -81,6 +82,8 @@
     <Compile Include="gtk-gui\ProyectoCafeteria.SeleccionCantidad.cs" />
     <Compile Include="ImprimirTicket.cs" />
     <Compile Include="gtk-gui\ProyectoCafeteria.ImprimirTicket.cs" />
+    <Compile Include="AñadirNumPersonas.cs" />
+    <Compile Include="gtk-gui\ProyectoCafeteria.AñadirNumPersonas.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

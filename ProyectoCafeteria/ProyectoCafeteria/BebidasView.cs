@@ -14,12 +14,14 @@ namespace ProyectoCafeteria
 		private IDbConnection dbConnection;
 		private ListStore listStore;//listStore que utilizo para todos los métodos.
 		private Label total;
+		private Button botonNuevoPedido;
 		
-		public BebidasView (Label labelTotal) : 
+		public BebidasView (Label labelTotal,Button botonNP) : 
 				base(Gtk.WindowType.Toplevel)
 		{
 			this.Build ();
 			labelBF.Markup = "<span size='xx-large' weight='bold'>Bebidas Frias</span>";
+			botonNuevoPedido = botonNP;
 			
 
 			total = labelTotal;
@@ -160,8 +162,8 @@ namespace ProyectoCafeteria
 					
 				}
 
-				total.Markup = "<span size='xx-large' weight='bold'>"+ "Total: "+Convert.ToString(precioTotal)+ " Euros"+ "</span>";
-			
+				total.Markup = "<span size='xx-large' weight='bold'>"+ " Creando Pedido    Total: "+Convert.ToString(precioTotal)+ " Euros"+ "</span>";
+				botonNuevoPedido.Visible=true;
 				dataReader.Close ();
 
 			}
@@ -180,14 +182,14 @@ namespace ProyectoCafeteria
 		}
 		
 
-		protected void OnBotonTicketClicked (object sender, System.EventArgs e)
+		/*protected void OnBotonTicketClicked (object sender, System.EventArgs e)
 		{
 			//throw new System.NotImplementedException ();
 			this.Destroy();
-			TicketView ticketView =new TicketView();
+			TicketView ticketView =new TicketView(total);
 			ticketView.Show();
 			
-		}
+		}*/
 
 		protected void OnTreeViewRowActivated (object o, RowActivatedArgs args)
 		{
