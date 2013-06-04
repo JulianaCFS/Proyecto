@@ -5,24 +5,23 @@ using Npgsql;
 using ProyectoCafeteria;
 using System.Collections.Generic;
 
-
 namespace ProyectoCafeteria
-{
-	public partial class BebidasView : Gtk.Window
+{		
+	public partial class BolleriaDulceView : Gtk.Window
 	{	
+		private ListStore listStore;
 		private IDbConnection dbConnection;
-		private ListStore listStore;//listStore que utilizo para todos los métodos.
-		private Label total;
-		private Button botonNuevoPedido;
+		private Label totalMainWindow;
+		private Button botonNuevoPedidoMainWindow;
 		
-		public BebidasView (Label labelTotal,Button botonNP) : 
+		public BolleriaDulceView (Label labelTotalMainWindow,Button botonNP) : 
 				base(Gtk.WindowType.Toplevel)
 		{
 			this.Build ();
 			
-			labelBF.Markup = "<span size='xx-large' weight='bold'>Bebidas Frias</span>";
-			botonNuevoPedido = botonNP;
-			total = labelTotal;
+			labelBolleriaDulce.Markup = "<span size='xx-large' weight='bold'>Bollería Dulce</span>";
+			botonNuevoPedidoMainWindow = botonNP;
+			totalMainWindow = labelTotalMainWindow;
 			
 			dbConnection = ApplicationContext.Instance.DbConnection;
 			
@@ -30,14 +29,28 @@ namespace ProyectoCafeteria
 			//hacer la consulta bd
 			IDbCommand dbCommand = dbConnection.CreateCommand ();
 			dbCommand.CommandText = 
-				"select * from bebidasfrias ";
+				"select * from bolleriadulce ";
 				
 			IDataReader dataReader = dbCommand.ExecuteReader ();
-
-			llenarTablaBebidasFrias (treeView, dataReader);
+			
+			//llamo al método llenarTablaBebidas de la clase LlenarTreeViewBebidas, para que me llene el treeView con los datos obtenedo de la consulta de la BBDD
+			//LlenarTreeViewBebidas.llenarTablaBebidas(treeView, dataReader);
+			
+			llenarTreeViewBolleriaDulce (treeView, dataReader);
 			dataReader.Close ();
 		}
-		
+		public  void llenarTreeViewBolleriaDulce(TreeView treeView, IDataReader dataReader) 
+		{	
+			//TreeViewExtensions.ClearColumns (treeView);
+			AppendColumns (treeView, dataReader);	//hacer cabecera	
+			Type[] types = GetTypes (typeof(string), dataReader.FieldCount+1);
+			
+			listStore = new ListStore(types);
+			treeView.Model = listStore;
+			Fill (dataReader);
+			
+			
+		}
 		public  void AppendColumns(TreeView treeView, IDataReader dataReader)
 		{	
 
@@ -68,19 +81,6 @@ namespace ProyectoCafeteria
 			
 			treeView.AppendColumn(cantidad);
 		}
-
-		public  void llenarTablaBebidasFrias(TreeView treeView, IDataReader dataReader) 
-		{	
-			//TreeViewExtensions.ClearColumns (treeView);
-			AppendColumns (treeView, dataReader);	//hacer cabecera	
-			Type[] types = GetTypes (typeof(string), dataReader.FieldCount+1);
-			
-			listStore = new ListStore(types);
-			treeView.Model = listStore;
-			Fill (dataReader);
-			
-			
-		}
 		//método que devuelve el tipo a rellenar el treeview
 		public static Type[] GetTypes(Type type, int count)
 		{
@@ -103,6 +103,11 @@ namespace ProyectoCafeteria
 				values.Add("0");
 				listStore.AppendValues (values.ToArray());
 			}
+		}
+
+		protected void OnBotonAtrasClicked (object sender, System.EventArgs e)
+		{
+			this.Destroy();
 		}
 
 		protected void OnBotonAceptarClicked (object sender, System.EventArgs e)
@@ -147,12 +152,10 @@ namespace ProyectoCafeteria
 					}
 				}
 			}
-			
 			calculoLabelTotal();
-			}
-
-			public void calculoLabelTotal()
-			{
+		}
+		public void calculoLabelTotal()
+		{
 			
 				double precioTotal= 0;
 				
@@ -170,35 +173,18 @@ namespace ProyectoCafeteria
 					
 				}
 
-				total.Markup = "<span size='xx-large' weight='bold'>"+ " Creando Pedido    Total: "+Convert.ToString(precioTotal)+ " Euros"+ "</span>";
-				botonNuevoPedido.Visible=false;
+				totalMainWindow.Markup = "<span size='xx-large' weight='bold'>"+ " Creando Pedido    Total: "+Convert.ToString(precioTotal)+ " Euros"+ "</span>";
+				botonNuevoPedidoMainWindow.Visible=false;
 				dataReader.Close ();
 
-			}
-		
-		protected void OnBotonInicioClicked (object sender, System.EventArgs e)
-		{
-			this.Destroy();
 		}
 
 		protected void OnBotonEliminarClicked (object sender, System.EventArgs e)
 		{
-			//throw new System.NotImplementedException ();
 			TreeIter treeIter;
 			treeView.Selection.GetSelected(out treeIter);
 			treeView.Model.SetValue(treeIter, 4, "0");
 		}
-		
-
-		/*protected void OnBotonTicketClicked (object sender, System.EventArgs e)
-		{
-			//throw new System.NotImplementedException ();
-			this.Destroy();
-			TicketView ticketView =new TicketView(total);
-			ticketView.Show();
-			
-		}*/
-
 		protected void OnTreeViewRowActivated (object o, RowActivatedArgs args)
 		{
 			TreeModel model;
@@ -208,7 +194,7 @@ namespace ProyectoCafeteria
 			if (treeView.Selection.GetSelected (out model, out iterSelected)) {
 				string cantidad = (string)model.GetValue (iterSelected, 4);
 			
-				SeleccionCantidad pantallaseleccion = new SeleccionCantidad (treeView, cantidad, 1, labelBF);
+				SeleccionCantidad pantallaseleccion = new SeleccionCantidad (treeView, cantidad, 1, labelBolleriaDulce);
 				pantallaseleccion.Show ();
 		}
 	}

@@ -1,5 +1,5 @@
 using System;
-using Proyecto.Ad;
+
 using System.Data;
 using Gtk;
 using Npgsql;
@@ -19,10 +19,10 @@ namespace ProyectoCafeteria
 		{
 			this.Build ();
 
-			string connectionString = "Server=localhost;Database=dbprueba;User Id=dbprueba;Password=Juliana";
-			ApplicationContext.Instance.DbConnection = new NpgsqlConnection(connectionString);
+			/*string connectionString = "Server=localhost;Database=dbcafeteria;User Id=dbcafeteria;Password=dbcafeteria";
+			ApplicationContext.Instance.DbConnection = new NpgsqlConnection(connectionString);*/
 			dbConnection = ApplicationContext.Instance.DbConnection;
-			dbConnection.Open ();
+			//dbConnection.Open ();
 
 			pant = pantalla;
 			treeview = TV;

@@ -39,7 +39,58 @@ Modificaciones en la ventana de TicketView.
 Funcionamiento de las ventanas SeleccionCantidad y ImprimirTicket.
 Cambios de los tamaños de los labels total,labelBF y labelTotal.
 
-/*** Fecha 24-05-2013*****/
+/*** Fecha 24-05-2013 y 27-05-2013*****/
 
-6 Horas.
-Cambios Generales
+7 Horas.
+Cambios Generales.
+Busqueda de cambiar color fondo, botones.
+
+/*** Fecha 29-05-2013 *****/
+
+2 Horas.
+Dedicada a la memoria del proyecto fin de curso
+
+/*** Fecha 30-05-2013 *****/
+
+3 Horas. iNSTITUTO (Seguimiento proyecto)
+
+Creación nueva conexión a una nueva base de datos dbcafeteria.
+Búsqueda de información, de como poner imagen en un campo de la base de datos postgres.
+
+/*** Fecha 31-05-2013 *****/
+
+3 Horas.
+Dedicada para la creación de la tabla MESA,AÑADIRNUMPERSONAS y método para cálcular el número de mesa correspondiente se son más de 4 personas.
+
+/*** Fecha 01-06-2013 *****/
+
+3 horas.
+
+/*** Fecha 02-06-2013 *****/
+
+4 horas.
+Dedicadas para memoria proyecto
+
+/*** Fecha 03-06-2013 *****/
+
+5 horas.
+Dedicadas para hacer las clases BebidasCalientes,Bocadillos,BolleriaDulce,BolleriaSalada.
+Tablas en la base de datos bebidascalientes,bocadillos,bolleriadulce,bolleriasalada.
+Montar pantallas usando interza GTK.
+
+/*** Fecha 04-06-2013 *****/
+
+8 horas.
+Dedicadas para hacer las clases AlmuerzoParte,AlmuerzoCompleto,DesayunoPopular.
+Tablas en la base de datos almuerzoparte,almuerzocompleto,desayunopopular.
+Montar pantallas usando interza GTK.
+
+ 
+
+ 
+
+
+
+
+
+

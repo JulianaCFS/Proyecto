@@ -1,14 +1,29 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="ImprimirTicket.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MainWindow.cs">
     <Files>
-      <File FileName="MainWindow.cs" Line="20" Column="3" />
-      <File FileName="BebidasView.cs" Line="1" Column="1" />
-      <File FileName="TicketView.cs" Line="1" Column="1" />
+      <File FileName="TicketView.cs" Line="116" Column="10" />
       <File FileName="SeleccionCantidad.cs" Line="1" Column="1" />
-      <File FileName="ImprimirTicket.cs" Line="42" Column="35" />
-      <File FileName="AñadirNumPersonas.cs" Line="28" Column="84" />
+      <File FileName="ImprimirTicket.cs" Line="1" Column="1" />
+      <File FileName="AñadirNumPersonas.cs" Line="1" Column="1" />
+      <File FileName="Main.cs" Line="1" Column="1" />
+      <File FileName="ApplicationContext.cs" Line="1" Column="1" />
+      <File FileName="DbCommandExtensions.cs" Line="1" Column="1" />
+      <File FileName="MainWindow.cs" Line="76" Column="26" />
+      <File FileName="BebidasView.cs" Line="1" Column="1" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="ProyectoCafeteria" expanded="True">
+            <Node name="MainWindow.cs" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ConnectionManagerPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

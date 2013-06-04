@@ -1,5 +1,4 @@
-using System;
-using Proyecto.Ad;
+using System; 
 using System.Data;
 using Gtk;
 using Npgsql;
@@ -14,15 +13,16 @@ namespace ProyectoCafeteria
 		private Label totalMain;
 		private Button botonNuevoPedido;
 		public TicketView (Label labelMain, Button botonNP) : base(Gtk.WindowType.Toplevel)
-		{
+		{	
 			this.Build ();
 			totalMain = labelMain;
 			botonNuevoPedido = botonNP;
 			
-			string connectionString = "Server=localhost;Database=dbprueba;User Id=dbprueba;Password=Juliana";
-			ApplicationContext.Instance.DbConnection = new NpgsqlConnection(connectionString);
+			
+			/*string connectionString = "Server=localhost;Database=dbcafeteria;User Id=dbcafeteria;Password=dbcafeteria";
+			ApplicationContext.Instance.DbConnection = new NpgsqlConnection(connectionString);*/
 			dbConnection = ApplicationContext.Instance.DbConnection;
-			dbConnection.Open ();
+			//dbConnection.Open ();
 			
 			//hacer la consulta bd
 			IDbCommand dbCommand = dbConnection.CreateCommand ();
@@ -41,6 +41,7 @@ namespace ProyectoCafeteria
 		{
 			//throw new System.NotImplementedException ();
 			ImprimirTicket imprimirTicket = new ImprimirTicket(totalMain,botonNuevoPedido);//le paso el label del total, para que cuando imprima el ticket, poner pantalla inicio el total a 0
+			
 			imprimirTicket.Show();
 			this.Destroy ();
 		}

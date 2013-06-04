@@ -84,6 +84,26 @@
     <Compile Include="gtk-gui\ProyectoCafeteria.ImprimirTicket.cs" />
     <Compile Include="AñadirNumPersonas.cs" />
     <Compile Include="gtk-gui\ProyectoCafeteria.AñadirNumPersonas.cs" />
+    <Compile Include="BebidasCalientesView.cs" />
+    <Compile Include="LlenarTreeViewBebidas.cs" />
+    <Compile Include="gtk-gui\ProyectoCafeteria.BebidasCalientesView.cs" />
+    <Compile Include="gtk-gui\ProyectoCafeteria.LlenarTreeViewBebidas.cs" />
+    <Compile Include="TipoExtension.cs" />
+    <Compile Include="TreeViewExtension.cs" />
+    <Compile Include="gtk-gui\ProyectoCafeteria.TipoExtension.cs" />
+    <Compile Include="gtk-gui\ProyectoCafeteria.TreeViewExtension.cs" />
+    <Compile Include="Bocadillos.cs" />
+    <Compile Include="gtk-gui\ProyectoCafeteria.Bocadillos.cs" />
+    <Compile Include="BolleriaDulceView.cs" />
+    <Compile Include="gtk-gui\ProyectoCafeteria.BolleriaDulceView.cs" />
+    <Compile Include="BolleriaSaladaView.cs" />
+    <Compile Include="gtk-gui\ProyectoCafeteria.BolleriaSaladaView.cs" />
+    <Compile Include="AlmuerzoParteView.cs" />
+    <Compile Include="gtk-gui\ProyectoCafeteria.AlmuerzoParteView.cs" />
+    <Compile Include="AlmuerzoCompleto.cs" />
+    <Compile Include="gtk-gui\ProyectoCafeteria.AlmuerzoCompleto.cs" />
+    <Compile Include="DesayunoPopularView.cs" />
+    <Compile Include="gtk-gui\ProyectoCafeteria.DesayunoPopularView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

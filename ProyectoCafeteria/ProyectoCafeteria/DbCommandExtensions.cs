@@ -1,7 +1,7 @@
 using System;
 using System.Data;
 
-namespace Proyecto.Ad
+namespace ProyectoCafeteria
 {	
 	public static class DbCommandExtensions
 	{
