@@ -60,6 +60,7 @@ public partial class MainWindow: Gtk.Window
 	
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
 	{
+		//actualizar update disponible = 'si' tabla mesa
 		Application.Quit ();
 		a.RetVal = true;
 	}
@@ -100,13 +101,13 @@ public partial class MainWindow: Gtk.Window
 
 	protected void OnBotonAlmuerzoCompletoClicked (object sender, System.EventArgs e)
 	{
-		AlmuerzoCompleto almuerzoCompleto = new AlmuerzoCompleto();
+		AlmuerzoCompleto almuerzoCompleto = new AlmuerzoCompleto(total,buttonNuevoPedido);
 		almuerzoCompleto.Show();
 	}
 
 	protected void OnBotonDesayunoPopularClicked (object sender, System.EventArgs e)
 	{
-		DesayunoPopularView desayunoPopularView = new DesayunoPopularView();
+		DesayunoPopularView desayunoPopularView = new DesayunoPopularView(total,buttonNuevoPedido);
 		desayunoPopularView.Show ();
 	}
 

@@ -15,7 +15,7 @@ namespace ProyectoCafeteria
 		{
 			this.Build ();
 		}
-		/*public static void llenarTablaBebidas(TreeView treeView, IDataReader dataReader) 
+		public static void llenarTablaBebidas(TreeView treeView, IDataReader dataReader) 
 		{	
 			//TreeViewExtensions.ClearColumns (treeView);
 			TreeViewExtension.AppendColumns (treeView, dataReader);	//hacer cabecera	
@@ -26,7 +26,7 @@ namespace ProyectoCafeteria
 			TreeViewExtension.Fill (dataReader);
 			
 			
-		}*/
+		}
 	}	
 }
 

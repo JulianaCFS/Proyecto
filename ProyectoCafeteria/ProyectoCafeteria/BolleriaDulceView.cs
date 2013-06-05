@@ -33,78 +33,17 @@ namespace ProyectoCafeteria
 				
 			IDataReader dataReader = dbCommand.ExecuteReader ();
 			
-			//llamo al método llenarTablaBebidas de la clase LlenarTreeViewBebidas, para que me llene el treeView con los datos obtenedo de la consulta de la BBDD
-			//LlenarTreeViewBebidas.llenarTablaBebidas(treeView, dataReader);
 			
-			llenarTreeViewBolleriaDulce (treeView, dataReader);
+			//Aquí creamos un objeto de la clase RellenarTreeView y le pasamos a la clase el treeView y el dataReader
+			RellenarTreeView rellenar =new RellenarTreeView();
+			rellenar.llenarTreeView(treeView, dataReader);
+			//recogemos el listStore que usamos en la clase RellenarTreeView, para ser usada en los los métodos en esa clase
+			listStore = rellenar.get_ListStore();
+			
+			//llenarTreeViewBolleriaDulce (treeView, dataReader);
 			dataReader.Close ();
 		}
-		public  void llenarTreeViewBolleriaDulce(TreeView treeView, IDataReader dataReader) 
-		{	
-			//TreeViewExtensions.ClearColumns (treeView);
-			AppendColumns (treeView, dataReader);	//hacer cabecera	
-			Type[] types = GetTypes (typeof(string), dataReader.FieldCount+1);
-			
-			listStore = new ListStore(types);
-			treeView.Model = listStore;
-			Fill (dataReader);
-			
-			
-		}
-		public  void AppendColumns(TreeView treeView, IDataReader dataReader)
-		{	
-
-			for (int index = 0; index < dataReader.FieldCount; index++)
-			{
-				//Console.WriteLine("el indice es: {0}", index);
-				treeView.AppendColumn (dataReader.GetName (index), new CellRendererText(), "text", index);
-				
-				
-				//treeView.AppendColumn ("columna1", new CellRendererText(), "text",index);
-			}
-			
-			//Añadimos la columna de la cantidad porque en la BBDD no tenemos este campo.
-			TreeViewColumn cantidad = new TreeViewColumn();
-			cantidad.Title = "Cantidad";
-			CellRendererText cant = new CellRendererText();
-			cantidad.PackStart(cant, true);
-			cantidad.AddAttribute(cant,"text",4);
-			
-		   
-			//para mostrar las imágenes
-			//CellRendererPixbuf cellRendererPixbuf = new CellRendererPixbuf();
-			
-			//prueba para cambiar tamaño letra
-			cantidad.Sizing = TreeViewColumnSizing.Fixed;
-		   	cantidad.FixedWidth = 200;
-			
-			
-			treeView.AppendColumn(cantidad);
-		}
-		//método que devuelve el tipo a rellenar el treeview
-		public static Type[] GetTypes(Type type, int count)
-		{
-			List<Type> types = new List<Type>();
-			for (int index = 0; index < count; index++)
-				types.Add(type);
-			return types.ToArray ();
-		}
 		
-		public void Fill(IDataReader dataReader)
-		{
-			while(dataReader.Read ()) {
-				List<string> values = new List<string>();
-				for (int index = 0; index < dataReader.FieldCount; index++)
-				{
-					values.Add (dataReader[index].ToString ());
-					//Console.WriteLine("El iden es: {0} {1} ", dataReader[index].ToString (), index);
-					
-				}
-				values.Add("0");
-				listStore.AppendValues (values.ToArray());
-			}
-		}
-
 		protected void OnBotonAtrasClicked (object sender, System.EventArgs e)
 		{
 			this.Destroy();
@@ -152,33 +91,10 @@ namespace ProyectoCafeteria
 					}
 				}
 			}
-			calculoLabelTotal();
+			CalculoLabelMain calculoLabel = new CalculoLabelMain();
+			calculoLabel.calculoLabelTotal(totalMainWindow,botonNuevoPedidoMainWindow);
 		}
-		public void calculoLabelTotal()
-		{
-			
-				double precioTotal= 0;
-				
-				//hacer la consulta bd
-				IDbCommand dbCommand = dbConnection.CreateCommand ();
-				dbCommand.CommandText =  "select precio,cantidad from pedidos ";
-				
-				IDataReader dataReader = dbCommand.ExecuteReader ();
-			
-				while(dataReader.Read ()) {
-
-					double precio = dataReader.GetDouble(0);
-					int cantidad = dataReader.GetInt32(1);
-					precioTotal = precioTotal+(precio * cantidad);
-					
-				}
-
-				totalMainWindow.Markup = "<span size='xx-large' weight='bold'>"+ " Creando Pedido    Total: "+Convert.ToString(precioTotal)+ " Euros"+ "</span>";
-				botonNuevoPedidoMainWindow.Visible=false;
-				dataReader.Close ();
-
-		}
-
+		
 		protected void OnBotonEliminarClicked (object sender, System.EventArgs e)
 		{
 			TreeIter treeIter;

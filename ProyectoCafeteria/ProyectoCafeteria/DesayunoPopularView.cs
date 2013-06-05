@@ -9,18 +9,23 @@ namespace ProyectoCafeteria
 {
 	public partial class DesayunoPopularView : Gtk.Window
 	{	private IDbConnection dbConnection;
+		private Label totalMainWindow;
+		private Button botonNuevoPedidoMainWindow; 
+		string valorComboCafe, valorComboComida;
 		
-		public DesayunoPopularView () : 
+		public DesayunoPopularView (Label labelTotalMainWindow,Button botonNP) : 
 				base(Gtk.WindowType.Toplevel)
 		{
 			this.Build ();
 			labelDesayunoPopular.Markup = "<span size='xx-large' weight='bold'>DESAYUNO POPULAR</span>";
-			//botonNuevoPedidoMainWindow = botonNP;
-			//totalMainWindow = labelTotalMainWindow;
+			botonNuevoPedidoMainWindow = botonNP;
+			totalMainWindow = labelTotalMainWindow;
 			
 			dbConnection = ApplicationContext.Instance.DbConnection;
 			
 			cargarComboCafe();
+			cargarComboComida();
+			cargarComboPrecio();
 		}
 		public void cargarComboCafe()
 		{
@@ -50,9 +55,9 @@ namespace ProyectoCafeteria
 
 			dataReader.Close ();
 			
-			//comboboxCafe.Active= index_activado;
+			comboboxCafe.Active= 0;
 			
-			cargarComboComida();
+			
 			
 		}
 		public void cargarComboComida(){
@@ -83,9 +88,10 @@ namespace ProyectoCafeteria
 				index++;
 				
 			} while (dataReader.NextResult());
-
+			
+			comboboxComida.Active = 0;
 			dataReader.Close ();
-			cargarComboPrecio();
+			
 			
 		}
 			public void cargarComboPrecio()
@@ -114,26 +120,60 @@ namespace ProyectoCafeteria
 	
 				dataReader.Close ();
 				
-				//comboboxPrecio.Active= index_activado;
+				comboboxPrecio.Active= 0;
 				
-				cargarSpinButtonCantidad();
+				
 				
 					
 			}
-			public void cargarSpinButtonCantidad(){
-				
-				 double cant = spinbuttonCantidad.Value;
-				
-				//string cadena_cantidad = Convert.ToString (cant);
-				
-				IDbCommand dbCommand = dbConnection.CreateCommand ();
-				dbCommand.CommandText =  "update pedidos set cantidad=:cantidad";
-				
-				DbCommandExtensions.AddParameter (dbCommand, "cantidad", cant);
-				//DbCommandExtensions.AddParameter (dbCommand, "id", id);
-				
-				//totalTicket (labelPrecioTotal);
+			
+
+		protected void OnComboboxCafeChanged (object sender, System.EventArgs e)
+		{
+			valorComboCafe = comboboxCafe.ActiveText; 
+		}
+
+		protected void OnComboboxComidaChanged (object sender, System.EventArgs e)
+		{
+			valorComboComida = comboboxComida.ActiveText;
+		}
+
+		protected void OnBotonAtrasClicked (object sender, System.EventArgs e)
+		{
+			this.Destroy();
+		}
+
+		protected void OnBotonAceptarClicked (object sender, System.EventArgs e)
+		{	
+			if((comboboxComida.Active != 0)&&(comboboxCafe.Active!=0)&&(spinbuttonCantidad.Value!=0)){
+			string cadena = "Desayuno Popular: "+valorComboComida+", "+valorComboCafe;
+			IDbCommand dbCommand = dbConnection.CreateCommand ();
+						
+			dbCommand.CommandText = "insert into pedidos (nombre, tamano, precio,cantidad) values (:nombre, :tamano, :precio,:cantidad)";
+
+			DbCommandExtensions.AddParameter (dbCommand, "nombre",cadena);
+			DbCommandExtensions.AddParameter (dbCommand, "tamano", "Normal");
+			DbCommandExtensions.AddParameter (dbCommand, "precio", Convert.ToDouble(comboboxPrecio.ActiveText));
+			DbCommandExtensions.AddParameter (dbCommand, "cantidad", Convert.ToInt32(spinbuttonCantidad.Value));
+						
+			dbCommand.ExecuteNonQuery ();
+			
+			CalculoLabelMain calculoLabel = new CalculoLabelMain();
+			calculoLabel.calculoLabelTotal(totalMainWindow,botonNuevoPedidoMainWindow);
+			Destroy ();
+			}else{
+				MensajeComboInfo mensaje = new MensajeComboInfo();
+				mensaje.Show();
 			}
+		}
+
+		protected void OnBotonCancelarClicked (object sender, System.EventArgs e)
+		{
+			comboboxComida.Active= 0;
+			comboboxCafe.Active= 0;
+			comboboxPrecio.Active= 0;
+			spinbuttonCantidad.Value=0;
+		}
 	}
 }
 

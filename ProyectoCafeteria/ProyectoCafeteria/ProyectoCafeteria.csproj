@@ -85,13 +85,7 @@
     <Compile Include="AñadirNumPersonas.cs" />
     <Compile Include="gtk-gui\ProyectoCafeteria.AñadirNumPersonas.cs" />
     <Compile Include="BebidasCalientesView.cs" />
-    <Compile Include="LlenarTreeViewBebidas.cs" />
     <Compile Include="gtk-gui\ProyectoCafeteria.BebidasCalientesView.cs" />
-    <Compile Include="gtk-gui\ProyectoCafeteria.LlenarTreeViewBebidas.cs" />
-    <Compile Include="TipoExtension.cs" />
-    <Compile Include="TreeViewExtension.cs" />
-    <Compile Include="gtk-gui\ProyectoCafeteria.TipoExtension.cs" />
-    <Compile Include="gtk-gui\ProyectoCafeteria.TreeViewExtension.cs" />
     <Compile Include="Bocadillos.cs" />
     <Compile Include="gtk-gui\ProyectoCafeteria.Bocadillos.cs" />
     <Compile Include="BolleriaDulceView.cs" />
@@ -104,6 +98,10 @@
     <Compile Include="gtk-gui\ProyectoCafeteria.AlmuerzoCompleto.cs" />
     <Compile Include="DesayunoPopularView.cs" />
     <Compile Include="gtk-gui\ProyectoCafeteria.DesayunoPopularView.cs" />
+    <Compile Include="RellenarTreeView.cs" />
+    <Compile Include="CalculoLabelMain.cs" />
+    <Compile Include="MensajeComboInfo.cs" />
+    <Compile Include="gtk-gui\ProyectoCafeteria.MensajeComboInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

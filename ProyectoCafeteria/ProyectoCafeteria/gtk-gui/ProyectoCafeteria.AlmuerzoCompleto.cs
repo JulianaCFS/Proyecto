@@ -57,8 +57,9 @@ namespace ProyectoCafeteria
 			global::Stetic.Gui.Initialize (this);
 			// Widget ProyectoCafeteria.AlmuerzoCompleto
 			this.Name = "ProyectoCafeteria.AlmuerzoCompleto";
-			this.Title = global::Mono.Unix.Catalog.GetString ("AlmuerzoCompleto");
-			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
+			this.Title = global::Mono.Unix.Catalog.GetString ("Almuerzo Completo");
+			this.TypeHint = ((global::Gdk.WindowTypeHint)(2));
+			this.WindowPosition = ((global::Gtk.WindowPosition)(3));
 			// Container child ProyectoCafeteria.AlmuerzoCompleto.Gtk.Container+ContainerChild
 			this.vbox7 = new global::Gtk.VBox ();
 			this.vbox7.Name = "vbox7";
@@ -590,6 +591,9 @@ namespace ProyectoCafeteria
 			this.DefaultWidth = 400;
 			this.DefaultHeight = 234;
 			this.Show ();
+			this.comboboxCafe.Changed += new global::System.EventHandler (this.OnComboboxCafeChanged);
+			this.comboboxBocadillo.Changed += new global::System.EventHandler (this.OnComboboxBocadilloChanged);
+			this.comboboxBebida.Changed += new global::System.EventHandler (this.OnComboboxBebidaChanged);
 			this.botonCancelar.Clicked += new global::System.EventHandler (this.OnBotonCancelarClicked);
 			this.botonAtras.Clicked += new global::System.EventHandler (this.OnBotonAtrasClicked);
 			this.botonAceptar.Clicked += new global::System.EventHandler (this.OnBotonAceptarClicked);

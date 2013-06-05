@@ -2,15 +2,10 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="MainWindow.cs">
     <Files>
-      <File FileName="TicketView.cs" Line="116" Column="10" />
-      <File FileName="SeleccionCantidad.cs" Line="1" Column="1" />
-      <File FileName="ImprimirTicket.cs" Line="1" Column="1" />
-      <File FileName="AñadirNumPersonas.cs" Line="1" Column="1" />
-      <File FileName="Main.cs" Line="1" Column="1" />
-      <File FileName="ApplicationContext.cs" Line="1" Column="1" />
-      <File FileName="DbCommandExtensions.cs" Line="1" Column="1" />
-      <File FileName="MainWindow.cs" Line="76" Column="26" />
-      <File FileName="BebidasView.cs" Line="1" Column="1" />
+      <File FileName="AñadirNumPersonas.cs" Line="97" Column="5" />
+      <File FileName="RellenarTreeView.cs" Line="67" Column="43" />
+      <File FileName="BebidasView.cs" Line="74" Column="7" />
+      <File FileName="MainWindow.cs" Line="63" Column="51" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

@@ -43,21 +43,21 @@ namespace ProyectoCafeteria
 		}
 		public void calculoMesa(double numPersonas,int max){
 			
-			
-			
+			int numMesas;
+			int resto;
 			DateTime date1 = DateTime.Now;
 			String identificadorTicket = String.Format("{0:MMddyyyyHHmmss}", date1); 
 			long idmesa = 0;
 			
 			
+			
 			IDbCommand dbCommand = dbConnection.CreateCommand ();
 			
 			
-			
-			if(numPersonas >=1 || numPersonas <=max){
+			if(numPersonas >=1 && numPersonas <=max){
 				//recogo el idmesa de la tabla mesas
 				
-				dbCommand.CommandText =  "select idmesa from mesas where disponible = 'si' LIMIT 1";
+				dbCommand.CommandText =  "select idmesa from mesas where disponible = 'si' order by idmesa LIMIT 1";
 				IDataReader datareader = dbCommand.ExecuteReader ();
 				
 				if(datareader.Read ()){
@@ -72,46 +72,63 @@ namespace ProyectoCafeteria
 				dbCommand.ExecuteNonQuery ();
 				
 				//si dejo da error
-				/*dbCommand.CommandText = "insert into ticket (identificador, fk_idmesa) values (:identificadorTicket, :idmesa)";
+				dbCommand.CommandText = "insert into ticket (identificador, fk_idmesa) values (:identificadorTicket, :idmesa)";
 				DbCommandExtensions.AddParameter (dbCommand, "identificadorTicket",identificadorTicket);
 				DbCommandExtensions.AddParameter (dbCommand, "idmesa",idmesa);
 				
-				dbCommand.ExecuteNonQuery ();*/
+				dbCommand.ExecuteNonQuery ();
 			}else{
 				
-				int numMesas = (int)numPersonas / max;
-				int resto = (int)numPersonas - (max * numMesas);/*(int)numPersonas % max*/;
-				Console.WriteLine(resto);
+				numMesas = (int)numPersonas / max;
+				resto = /*(int)numPersonas-(max * numMesas);*/(int)numPersonas % max;
+				
 				
 				if(resto != 0){
 					
 					numMesas= numMesas+1;
 					
 				}
-				
 				//long[] mesas =new long[numMesas];
 				
-				dbCommand.CommandText =  "select idmesa from mesas where disponible = 'si' LIMIT :numMesas";
+				dbCommand.CommandText =  "select idmesa from mesas where disponible = 'si' order by idmesa LIMIT 2";
 				DbCommandExtensions.AddParameter (dbCommand, "numMesas",numMesas);
 				IDataReader datareader = dbCommand.ExecuteReader ();
 				
+				
 				while(datareader.Read ()){
 					
+					for (int index = 0; index < datareader.FieldCount; index++)
+				    {
+					
 						idmesa = datareader.GetInt64(0);
-			
+						Console.WriteLine(idmesa);
+				
 						//actualizo la tabla idmesa
-						dbCommand.CommandText =  "update mesas set disponible='no' where idmesa=:idmesa";
+						
+						//dbCommand.CommandText =  "update mesas set disponible='no' where idmesa=1;update mesas set disponible='no' where idmesa=2;";
+						dbCommand.CommandText = "update mesas set disponible='no' where idmesa=:idmesa;";
 						DbCommandExtensions.AddParameter (dbCommand, "idmesa", idmesa);
+						Console.WriteLine(dbCommand.CommandText);
 						
-						dbCommand.ExecuteNonQuery ();
+						dbCommand.ExecuteNonQuery();
 						
-						dbCommand.CommandText = "insert into ticket (identificador, fk_idmesa) values (:identificadorTicket, :idmesa)";
+						
+						/*dbCommand.CommandText = "insert into ticket (identificador, fk_idmesa) values (:identificadorTicket, :idmesa)";
 						DbCommandExtensions.AddParameter (dbCommand, "identificadorTicket",identificadorTicket);
 						DbCommandExtensions.AddParameter (dbCommand, "idmesa",idmesa);
 						
-						dbCommand.ExecuteNonQuery ();
+						dbCommand.ExecuteNonQuery ();*/
+						
+					}
 					
 				}
+				
+				
+						dbCommand.CommandText =  "update mesas set disponible='no' where idmesa=:idmesa;";
+						DbCommandExtensions.AddParameter (dbCommand, "idmesa", 2);
+						Console.WriteLine(dbCommand.CommandText);
+						
+						dbCommand.ExecuteNonQuery ();
 			
 			}
 			

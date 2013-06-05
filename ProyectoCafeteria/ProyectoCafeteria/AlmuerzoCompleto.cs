@@ -10,18 +10,25 @@ namespace ProyectoCafeteria
 {
 	public partial class AlmuerzoCompleto : Gtk.Window
 	{	private IDbConnection dbConnection;
-		public AlmuerzoCompleto () : 
+		string valorComboBebida, valorComboBocadillo, valorComboCafe;
+		private Label totalMainWindow;
+		private Button botonNuevoPedidoMainWindow;
+			
+		public AlmuerzoCompleto (Label labelTotal,Button botonNP) : 
 				base(Gtk.WindowType.Toplevel)
 		{
 			this.Build ();
 			
 			labelAlmuerzoCompleto.Markup = "<span size='xx-large' weight='bold'>ALMUERZO COMPLETO</span>";
-			//botonNuevoPedidoMainWindow = botonNP;
-			//totalMainWindow = labelTotalMainWindow;
+			botonNuevoPedidoMainWindow = botonNP;
+			totalMainWindow = labelTotal;
 			
 			dbConnection = ApplicationContext.Instance.DbConnection;
 			
 			cargarComboBebidas();
+			cargarComboBocadillo();
+			cargarComboPrecio();
+			cargarComboCafe();
 		}
 		public void cargarComboBebidas(){
 			
@@ -51,10 +58,12 @@ namespace ProyectoCafeteria
 
 			dataReader.Close ();
 			
-			//comboboxBebida.Active= index_activado;
+			comboboxBebida.Active= 0;
 			
 			
-			cargarComboBocadillo();
+			//onsole.WriteLine(valor);
+			
+			
 			
 		}
 		public void cargarComboBocadillo(){
@@ -82,9 +91,10 @@ namespace ProyectoCafeteria
 				index++;
 				
 			} while (dataReader.NextResult());
-
+			
+			comboboxBocadillo.Active= 0;
 			dataReader.Close ();
-			cargarComboCafe();
+			
 		}
 		public void cargarComboCafe()
 		{
@@ -114,9 +124,9 @@ namespace ProyectoCafeteria
 
 			dataReader.Close ();
 			
-			//comboboxCafe.Active= index_activado;
+			comboboxCafe.Active= 0;
 			
-			cargarComboPrecio();
+			
 			
 		}
 		public void cargarComboPrecio()
@@ -145,26 +155,14 @@ namespace ProyectoCafeteria
 
 			dataReader.Close ();
 			
-			//comboboxPrecio.Active= index_activado;
+			comboboxPrecio.Active= 0;
 			
-			cargarSpinButtonCantidad();
+					
+			
 			
 				
 		}
-		public void cargarSpinButtonCantidad(){
-			
-			 double cant = spinbuttonCantidad.Value;
-			
-			//string cadena_cantidad = Convert.ToString (cant);
-			
-			IDbCommand dbCommand = dbConnection.CreateCommand ();
-			dbCommand.CommandText =  "update pedidos set cantidad=:cantidad";
-			
-			DbCommandExtensions.AddParameter (dbCommand, "cantidad", cant);
-			//DbCommandExtensions.AddParameter (dbCommand, "id", id);
-			
-			//totalTicket (labelPrecioTotal);
-		}
+		
 		protected void OnBotonAtrasClicked (object sender, System.EventArgs e)
 		{
 			this.Destroy();
@@ -172,12 +170,58 @@ namespace ProyectoCafeteria
 
 		protected void OnBotonAceptarClicked (object sender, System.EventArgs e)
 		{
+			if((comboboxBebida.Active != 0)&&(comboboxBocadillo.Active !=0)&&(comboboxCafe.Active!=0)&&(spinbuttonCantidad.Value!=0)){
+			
+			string cadena = "Almuerzo Completo: "+valorComboBebida+", "+valorComboBocadillo +", "+valorComboCafe;
+			IDbCommand dbCommand = dbConnection.CreateCommand ();
+						
+			dbCommand.CommandText = "insert into pedidos (nombre, tamano, precio,cantidad) values (:nombre, :tamano, :precio,:cantidad)";
+
+			DbCommandExtensions.AddParameter (dbCommand, "nombre",cadena);
+			DbCommandExtensions.AddParameter (dbCommand, "tamano", "Normal");
+			DbCommandExtensions.AddParameter (dbCommand, "precio", Convert.ToDouble(comboboxPrecio.ActiveText));
+			DbCommandExtensions.AddParameter (dbCommand, "cantidad", Convert.ToInt32(spinbuttonCantidad.Value));
+						
+						dbCommand.ExecuteNonQuery ();
+			
+			CalculoLabelMain calculoLabel = new CalculoLabelMain();
+			calculoLabel.calculoLabelTotal(totalMainWindow,botonNuevoPedidoMainWindow);
+			Destroy ();
+			}else{
+				MensajeComboInfo mensaje = new MensajeComboInfo();
+				mensaje.Show();
+			}
+						
 			
 		}
+		
 
 		protected void OnBotonCancelarClicked (object sender, System.EventArgs e)
+		{	
+			comboboxBocadillo.Active= 0;
+			comboboxBebida.Active= 0;
+			comboboxCafe.Active= 0;
+			comboboxPrecio.Active= 0;
+			spinbuttonCantidad.Value=0;
+		}
+
+
+		protected void OnComboboxBebidaChanged (object sender, System.EventArgs e)
 		{
-			this.Destroy();
+			
+
+                 valorComboBebida = comboboxBebida.ActiveText;   
+             	
+		}
+
+		protected void OnComboboxBocadilloChanged (object sender, System.EventArgs e)
+		{
+			 valorComboBocadillo = comboboxBocadillo.ActiveText; 
+		}
+
+		protected void OnComboboxCafeChanged (object sender, System.EventArgs e)
+		{
+			valorComboCafe = comboboxCafe.ActiveText; 
 		}
 	}
 }
