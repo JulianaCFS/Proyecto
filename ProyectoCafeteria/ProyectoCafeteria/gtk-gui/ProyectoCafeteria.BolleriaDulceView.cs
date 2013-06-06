@@ -66,6 +66,7 @@ namespace ProyectoCafeteria
 			w4.Position = 2;
 			// Container child vbox3.Gtk.Box+BoxChild
 			this.table3 = new global::Gtk.Table (((uint)(2)), ((uint)(5)), false);
+			this.table3.Name = "table3";
 			this.table3.RowSpacing = ((uint)(6));
 			this.table3.ColumnSpacing = ((uint)(6));
 			// Container child table3.Gtk.Table+TableChild

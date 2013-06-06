@@ -124,11 +124,6 @@ public partial class MainWindow: Gtk.Window
 
 	}
 
-	protected void OnButton9Clicked (object sender, System.EventArgs e)
-	{
-		throw new System.NotImplementedException ();
-	}
-
 	protected void OnBotonticketClicked (object sender, System.EventArgs e)
 	{
 		//throw new System.NotImplementedException ();
