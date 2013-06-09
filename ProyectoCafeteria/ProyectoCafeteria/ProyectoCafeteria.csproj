@@ -102,6 +102,12 @@
     <Compile Include="CalculoLabelMain.cs" />
     <Compile Include="MensajeComboInfo.cs" />
     <Compile Include="gtk-gui\ProyectoCafeteria.MensajeComboInfo.cs" />
+    <Compile Include="AlertaMesaNoDisponible.cs" />
+    <Compile Include="gtk-gui\ProyectoCafeteria.AlertaMesaNoDisponible.cs" />
+    <Compile Include="AlertaSesionNoIniciada.cs" />
+    <Compile Include="gtk-gui\ProyectoCafeteria.AlertaSesionNoIniciada.cs" />
+    <Compile Include="PantallaAyudaUsuario.cs" />
+    <Compile Include="gtk-gui\ProyectoCafeteria.PantallaAyudaUsuario.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

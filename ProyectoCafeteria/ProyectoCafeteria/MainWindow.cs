@@ -10,13 +10,16 @@ using Npgsql;
 
 
 public partial class MainWindow: Gtk.Window
-{	private IDbConnection dbConnection;
-	
+{	
+
+	private IDbConnection dbConnection;
+	public static bool HasIniciadoPedido = false;
+ 	
 	public MainWindow (): base (Gtk.WindowType.Toplevel)
 	{
 		Build ();
 		total.Markup = "<span size='xx-large' weight='bold'> Total: 0,0 Euros</span>";
-		//buttonNuevoPedido.Visible=true;
+		
 		
 		string connectionString = "Server=localhost;Database=dbcafeteria;User Id=dbcafeteria;Password=dbcafeteria";
 		ApplicationContext.Instance.DbConnection = new NpgsqlConnection(connectionString);
@@ -24,7 +27,7 @@ public partial class MainWindow: Gtk.Window
 		dbConnection.Open ();
 				 
 		
-		//ApplicationContext.Instance.DbConnection = new NpgsqlConnection(connectionString);
+		
 		dbConnection = ApplicationContext.Instance.DbConnection;
 		
 		//Objeto fondo creado para poner un color de fondo en el boton "INICIAR PEDIDO"
@@ -32,35 +35,23 @@ public partial class MainWindow: Gtk.Window
 		Gdk.Color.Parse("red", ref fondo);
 		buttonNuevoPedido.ModifyBg(StateType.Normal, fondo);
 		
-		/*Label labelprueba = new Label ();
 		
-		labelprueba.Markup = "<span size='xx-large' weight='bold'> </span>";
-		
-		botonBebidasFrias.Label= "<span size='xx-large' weight='bold'> Bebidas Frías(refrescos,cervezas,batidos)</span>";
-		*/
-		
-		
-		// Guarda la imagen que esta en la misma carpeta a
- 		// un objeto de Gtk.Image
-		//Gtk.Image image = new Gtk.Image("cocacola.jpg");
-		//byte[] bytes = image.Pixbuf.SaveToBuffer ("jpg");
-		
-		 
-		
-		/*IDbCommand dbCommand = dbConnection.CreateCommand ();
-						
-		dbCommand.CommandText = "insert into bebidasfrias (imagen) values (:imagen)";
-
-		DbCommandExtensions.AddParameter (dbCommand, "imagen",bytes);*/
-		
-		//insert into bebidasfrias (nombre, imagen) values (:nombre, :imagen);
-		//AddParameter imagen ... Value = bytes
 		
 	}
 	
 	protected void OnDeleteEvent (object sender, DeleteEventArgs a)
 	{
-		//actualizar update disponible = 'si' tabla mesa
+		
+		
+		IDbCommand dbCommand = dbConnection.CreateCommand ();
+		dbCommand.CommandText = "update mesas set disponible='si';";
+		
+		dbCommand.ExecuteNonQuery();
+		
+		dbCommand.CommandText = "delete from ticket ";
+		
+		dbCommand.ExecuteNonQuery();
+		
 		Application.Quit ();
 		a.RetVal = true;
 	}
@@ -74,8 +65,15 @@ public partial class MainWindow: Gtk.Window
 	}
 	private void showTablaBebidas()
 	{
-		BebidasView bebidasView = new BebidasView(total,buttonNuevoPedido);
-		bebidasView.Show();
+		if (HasIniciadoPedido == false) {
+			AlertaSesionNoIniciada sesionNo = new AlertaSesionNoIniciada ();
+			sesionNo.Show ();
+		    
+		} else {
+			BebidasView bebidasView = new BebidasView (total, buttonNuevoPedido);
+			bebidasView.Show ();
+		}
+
 	}
 	
 	
@@ -83,73 +81,137 @@ public partial class MainWindow: Gtk.Window
 	//pantalla
 	protected void OnBotonBebidasCalientesClicked (object sender, System.EventArgs e)
 	{
-		BebidasCalientesView bebidasCalientesView = new BebidasCalientesView(total,buttonNuevoPedido);
-		bebidasCalientesView.Show();
+
+		if (HasIniciadoPedido == false) {
+			AlertaSesionNoIniciada sesionNo = new AlertaSesionNoIniciada ();
+			sesionNo.Show ();
+
+		} else {
+			BebidasCalientesView bebidasCalientesView = new BebidasCalientesView (total, buttonNuevoPedido);
+			bebidasCalientesView.Show ();
+		}
 	}
 
 
 	protected void OnBotonBocadillosClicked (object sender, System.EventArgs e)
 	{
-		Bocadillos bocadillos = new Bocadillos(total,buttonNuevoPedido);
-		bocadillos.Show();
+		if(HasIniciadoPedido == false) {
+			AlertaSesionNoIniciada sesionNo = new AlertaSesionNoIniciada ();
+			sesionNo.Show ();
+
+		} else {
+
+			Bocadillos bocadillos = new Bocadillos(total,buttonNuevoPedido);
+			bocadillos.Show();
+		}
+
 	}
 	protected void OnBotonAlmuerzoParteClicked (object sender, System.EventArgs e)
 	{
-		AlmuerzoParteView almuerzoParteView = new AlmuerzoParteView(total,buttonNuevoPedido);
-		almuerzoParteView.Show();
+
+		if (HasIniciadoPedido == false) {
+			AlertaSesionNoIniciada sesionNo = new AlertaSesionNoIniciada ();
+			sesionNo.Show ();
+
+		} else {
+
+			AlmuerzoParteView almuerzoParteView = new AlmuerzoParteView (total, buttonNuevoPedido);
+			almuerzoParteView.Show ();
+		}
 	}
 
 	protected void OnBotonAlmuerzoCompletoClicked (object sender, System.EventArgs e)
 	{
-		AlmuerzoCompleto almuerzoCompleto = new AlmuerzoCompleto(total,buttonNuevoPedido);
-		almuerzoCompleto.Show();
+
+		if (HasIniciadoPedido == false) {
+			AlertaSesionNoIniciada sesionNo = new AlertaSesionNoIniciada ();
+			sesionNo.Show ();
+
+		} else {
+
+			AlmuerzoCompleto almuerzoCompleto = new AlmuerzoCompleto (total, buttonNuevoPedido);
+			almuerzoCompleto.Show ();
+
+		}
 	}
 
 	protected void OnBotonDesayunoPopularClicked (object sender, System.EventArgs e)
 	{
-		DesayunoPopularView desayunoPopularView = new DesayunoPopularView(total,buttonNuevoPedido);
-		desayunoPopularView.Show ();
+		if (HasIniciadoPedido == false) {
+			AlertaSesionNoIniciada sesionNo = new AlertaSesionNoIniciada ();
+			sesionNo.Show ();
+
+		} else {
+
+			DesayunoPopularView desayunoPopularView = new DesayunoPopularView (total, buttonNuevoPedido);
+			desayunoPopularView.Show ();
+		}
+
 	}
 
 	protected void OnBotonBolleriaDulceClicked (object sender, System.EventArgs e)
 	{
-		BolleriaDulceView bolleriaDulceView = new BolleriaDulceView(total,buttonNuevoPedido);
-		bolleriaDulceView.Show();
+		if (HasIniciadoPedido == false) {
+			AlertaSesionNoIniciada sesionNo = new AlertaSesionNoIniciada ();
+			sesionNo.Show ();
+
+		} else {
+
+			BolleriaDulceView bolleriaDulceView = new BolleriaDulceView (total, buttonNuevoPedido);
+			bolleriaDulceView.Show ();
+		}
 	}
 
 	protected void OnBotonBolleriaSaladaClicked (object sender, System.EventArgs e)
 	{
-		BolleriaSaladaView bolleriaSaladaView = new BolleriaSaladaView(total,buttonNuevoPedido);
-		bolleriaSaladaView.Show();
+		if (HasIniciadoPedido == false) {
+			AlertaSesionNoIniciada sesionNo = new AlertaSesionNoIniciada ();
+			sesionNo.Show ();
+
+		} else {
+
+			BolleriaSaladaView bolleriaSaladaView = new BolleriaSaladaView (total, buttonNuevoPedido);
+			bolleriaSaladaView.Show ();
+		}
 
 	}
 
 	protected void OnBotonticketClicked (object sender, System.EventArgs e)
 	{
-		//throw new System.NotImplementedException ();
-			
-			TicketView ticketview = new TicketView(total,buttonNuevoPedido);//le paso el label del total, para que cuando imprima el ticket, poner pantalla inicio el total a 0
-			ticketview.Show();
+		if (HasIniciadoPedido == false) {
+			AlertaSesionNoIniciada sesionNo = new AlertaSesionNoIniciada ();
+			sesionNo.Show ();
+
+		} else {
+
+			IDbCommand dbCommand = dbConnection.CreateCommand ();
+			dbCommand.CommandText =  "select COUNT(id) from pedidos";
+			int hayPedidos = Convert.ToInt32(dbCommand.ExecuteScalar());
+
+			if (hayPedidos != 0) {
+
+				TicketView ticketview = new TicketView (total, buttonNuevoPedido);//le paso el label del total, para que cuando imprima el ticket, poner pantalla inicio el total a 0
+				ticketview.Show ();
+
+			}
+
+
+		}
+
 	}
 
 	protected void OnButtonNuevoPedidoClicked (object sender, System.EventArgs e)
 	{
 		
-		AñadirNumPersonas añadirNumPersonas = new AñadirNumPersonas ();
+		AñadirNumPersonas añadirNumPersonas = new AñadirNumPersonas (total,buttonNuevoPedido);
 		añadirNumPersonas.Show();
-		//throw new System.NotImplementedException ();
-			/*string connectionString = "Server=localhost;Database=dbcafeteria;User Id=dbcafeteria;Password=dbcafeteria";
-			ApplicationContext.Instance.DbConnection = new NpgsqlConnection(connectionString);
-			dbConnection = ApplicationContext.Instance.DbConnection;
-			dbConnection.Open ();*/
 			
-			//hacer la consulta bd
+			
 			IDbCommand dbCommand = dbConnection.CreateCommand ();
 			dbCommand.CommandText = 
 				"delete from pedidos ";
 			
-			IDataReader datareader = dbCommand.ExecuteReader ();
-			datareader.Close ();
+		    dbCommand.ExecuteNonQuery();
 			
 			total.Markup = "<span size='xx-large' weight='bold'>Inicie Pedido    Total: 0,0 Euros</span>";
 			buttonNuevoPedido.Visible=false;
@@ -159,4 +221,9 @@ public partial class MainWindow: Gtk.Window
 	
 	
 	
+	protected void OnBotonAyudaClicked (object sender, System.EventArgs e)
+	{
+		PantallaAyudaUsuario ayudaUsuario = new PantallaAyudaUsuario();
+		ayudaUsuario.Show();
+	}
 }

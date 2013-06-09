@@ -23,23 +23,21 @@ namespace ProyectoCafeteria
 
 		protected void OnBotonAceptarClicked (object sender, System.EventArgs e)
 		{
-			//throw new System.NotImplementedException ();
-			/*string connectionString = "Server=localhost;Database=dbcafeteria;User Id=dbcafeteria;Password=dbcafeteria";
-			ApplicationContext.Instance.DbConnection = new NpgsqlConnection(connectionString);*/
+			
 			dbConnection = ApplicationContext.Instance.DbConnection;
-			//dbConnection.Open ();
+			
 			
 			//hacer la consulta bd
 			IDbCommand dbCommand = dbConnection.CreateCommand ();
 			dbCommand.CommandText = 
 				"delete from pedidos ";
 			
-			IDataReader datareader = dbCommand.ExecuteReader ();
-			datareader.Close ();
+			//IDataReader datareader = dbCommand.ExecuteReader ();
+			//datareader.Close ();
 			
-			totalMain.Markup = "<span size='xx-large' weight='bold'>Inicie Pedido   Total: 0,0 Euros</span>";
+			totalMain.Markup = "<span size='xx-large' weight='bold'>   Total: 0,0 Euros</span>";
 			botonNuevoPedido.Visible=true;
-			
+			MainWindow.HasIniciadoPedido = false;
 				
 			this.Destroy ();
 		}

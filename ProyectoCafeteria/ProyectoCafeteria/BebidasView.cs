@@ -65,11 +65,7 @@ namespace ProyectoCafeteria
 					string precio = (string)listStore.GetValue(iter,3);
 					string cantidad = (string)listStore.GetValue(iter,4);
 					
-				/*	Console.WriteLine("Nombre :" + nombre);
-					Console.WriteLine("Tipo :" + tamano);
-					Console.WriteLine("Precio :" + precio);
-					Console.WriteLine("Cantidad :" + cantidad);*/
-
+				
 					if(!cantidad.Equals("0"))
 					{
 						IDbCommand dbCommand = dbConnection.CreateCommand ();
@@ -103,21 +99,11 @@ namespace ProyectoCafeteria
 
 		protected void OnBotonEliminarClicked (object sender, System.EventArgs e)
 		{
-			//throw new System.NotImplementedException ();
+			
 			TreeIter treeIter;
 			treeView.Selection.GetSelected(out treeIter);
 			treeView.Model.SetValue(treeIter, 4, "0");
 		}
-		
-
-		/*protected void OnBotonTicketClicked (object sender, System.EventArgs e)
-		{
-			//throw new System.NotImplementedException ();
-			this.Destroy();
-			TicketView ticketView =new TicketView(total);
-			ticketView.Show();
-			
-		}*/
 
 		protected void OnTreeViewRowActivated (object o, RowActivatedArgs args)
 		{
@@ -134,4 +120,5 @@ namespace ProyectoCafeteria
 	}
 	}
 }
+
 

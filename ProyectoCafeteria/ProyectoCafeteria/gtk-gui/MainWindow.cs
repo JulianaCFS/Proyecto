@@ -16,13 +16,13 @@ public partial class MainWindow
 	private global::Gtk.Table table1;
 	private global::Gtk.Button botonAlmuerzoCompleto;
 	private global::Gtk.Button botonAlmuerzoParte;
+	private global::Gtk.Button botonAyuda;
 	private global::Gtk.Button botonBebidasCalientes;
 	private global::Gtk.Button BotonBebidasCalientes;
 	private global::Gtk.Button botonBebidasFrias;
 	private global::Gtk.Button botonBolleriaDulce;
 	private global::Gtk.Button botonBolleriaSalada;
 	private global::Gtk.Button botonDesayunoPopular;
-	private global::Gtk.Button button9;
 	
 	protected virtual void Build ()
 	{
@@ -185,15 +185,27 @@ public partial class MainWindow
 		w27.TopAttach = ((uint)(1));
 		w27.BottomAttach = ((uint)(2));
 		// Container child table1.Gtk.Table+TableChild
+		this.botonAyuda = new global::Gtk.Button ();
+		this.botonAyuda.CanFocus = true;
+		this.botonAyuda.Name = "botonAyuda";
+		this.botonAyuda.UseUnderline = true;
+		this.botonAyuda.Label = global::Mono.Unix.Catalog.GetString ("Ayuda");
+		this.table1.Add (this.botonAyuda);
+		global::Gtk.Table.TableChild w28 = ((global::Gtk.Table.TableChild)(this.table1 [this.botonAyuda]));
+		w28.TopAttach = ((uint)(2));
+		w28.BottomAttach = ((uint)(3));
+		w28.LeftAttach = ((uint)(2));
+		w28.RightAttach = ((uint)(3));
+		// Container child table1.Gtk.Table+TableChild
 		this.botonBebidasCalientes = new global::Gtk.Button ();
 		this.botonBebidasCalientes.CanFocus = true;
 		this.botonBebidasCalientes.Name = "botonBebidasCalientes";
 		this.botonBebidasCalientes.UseUnderline = true;
 		this.botonBebidasCalientes.Label = global::Mono.Unix.Catalog.GetString ("Bebidas Calientes\n(cafés,infusiones)");
 		this.table1.Add (this.botonBebidasCalientes);
-		global::Gtk.Table.TableChild w28 = ((global::Gtk.Table.TableChild)(this.table1 [this.botonBebidasCalientes]));
-		w28.LeftAttach = ((uint)(1));
-		w28.RightAttach = ((uint)(2));
+		global::Gtk.Table.TableChild w29 = ((global::Gtk.Table.TableChild)(this.table1 [this.botonBebidasCalientes]));
+		w29.LeftAttach = ((uint)(1));
+		w29.RightAttach = ((uint)(2));
 		// Container child table1.Gtk.Table+TableChild
 		this.BotonBebidasCalientes = new global::Gtk.Button ();
 		this.BotonBebidasCalientes.CanFocus = true;
@@ -201,9 +213,9 @@ public partial class MainWindow
 		this.BotonBebidasCalientes.UseUnderline = true;
 		this.BotonBebidasCalientes.Label = global::Mono.Unix.Catalog.GetString ("Bocadillos");
 		this.table1.Add (this.BotonBebidasCalientes);
-		global::Gtk.Table.TableChild w29 = ((global::Gtk.Table.TableChild)(this.table1 [this.BotonBebidasCalientes]));
-		w29.LeftAttach = ((uint)(2));
-		w29.RightAttach = ((uint)(3));
+		global::Gtk.Table.TableChild w30 = ((global::Gtk.Table.TableChild)(this.table1 [this.BotonBebidasCalientes]));
+		w30.LeftAttach = ((uint)(2));
+		w30.RightAttach = ((uint)(3));
 		// Container child table1.Gtk.Table+TableChild
 		this.botonBebidasFrias = new global::Gtk.Button ();
 		this.botonBebidasFrias.CanFocus = true;
@@ -218,9 +230,9 @@ public partial class MainWindow
 		this.botonBolleriaDulce.UseUnderline = true;
 		this.botonBolleriaDulce.Label = global::Mono.Unix.Catalog.GetString ("\tBollería Dulce\n(croissants,ensaimadas ...)");
 		this.table1.Add (this.botonBolleriaDulce);
-		global::Gtk.Table.TableChild w31 = ((global::Gtk.Table.TableChild)(this.table1 [this.botonBolleriaDulce]));
-		w31.TopAttach = ((uint)(2));
-		w31.BottomAttach = ((uint)(3));
+		global::Gtk.Table.TableChild w32 = ((global::Gtk.Table.TableChild)(this.table1 [this.botonBolleriaDulce]));
+		w32.TopAttach = ((uint)(2));
+		w32.BottomAttach = ((uint)(3));
 		// Container child table1.Gtk.Table+TableChild
 		this.botonBolleriaSalada = new global::Gtk.Button ();
 		this.botonBolleriaSalada.CanFocus = true;
@@ -228,11 +240,11 @@ public partial class MainWindow
 		this.botonBolleriaSalada.UseUnderline = true;
 		this.botonBolleriaSalada.Label = global::Mono.Unix.Catalog.GetString ("\tBollería Salada\n(tostadas,montaditos ...)");
 		this.table1.Add (this.botonBolleriaSalada);
-		global::Gtk.Table.TableChild w32 = ((global::Gtk.Table.TableChild)(this.table1 [this.botonBolleriaSalada]));
-		w32.TopAttach = ((uint)(2));
-		w32.BottomAttach = ((uint)(3));
-		w32.LeftAttach = ((uint)(1));
-		w32.RightAttach = ((uint)(2));
+		global::Gtk.Table.TableChild w33 = ((global::Gtk.Table.TableChild)(this.table1 [this.botonBolleriaSalada]));
+		w33.TopAttach = ((uint)(2));
+		w33.BottomAttach = ((uint)(3));
+		w33.LeftAttach = ((uint)(1));
+		w33.RightAttach = ((uint)(2));
 		// Container child table1.Gtk.Table+TableChild
 		this.botonDesayunoPopular = new global::Gtk.Button ();
 		this.botonDesayunoPopular.CanFocus = true;
@@ -240,21 +252,9 @@ public partial class MainWindow
 		this.botonDesayunoPopular.UseUnderline = true;
 		this.botonDesayunoPopular.Label = global::Mono.Unix.Catalog.GetString ("Desayuno Popular");
 		this.table1.Add (this.botonDesayunoPopular);
-		global::Gtk.Table.TableChild w33 = ((global::Gtk.Table.TableChild)(this.table1 [this.botonDesayunoPopular]));
-		w33.TopAttach = ((uint)(1));
-		w33.BottomAttach = ((uint)(2));
-		w33.LeftAttach = ((uint)(2));
-		w33.RightAttach = ((uint)(3));
-		// Container child table1.Gtk.Table+TableChild
-		this.button9 = new global::Gtk.Button ();
-		this.button9.CanFocus = true;
-		this.button9.Name = "button9";
-		this.button9.UseUnderline = true;
-		this.button9.Label = global::Mono.Unix.Catalog.GetString ("Ayuda");
-		this.table1.Add (this.button9);
-		global::Gtk.Table.TableChild w34 = ((global::Gtk.Table.TableChild)(this.table1 [this.button9]));
-		w34.TopAttach = ((uint)(2));
-		w34.BottomAttach = ((uint)(3));
+		global::Gtk.Table.TableChild w34 = ((global::Gtk.Table.TableChild)(this.table1 [this.botonDesayunoPopular]));
+		w34.TopAttach = ((uint)(1));
+		w34.BottomAttach = ((uint)(2));
 		w34.LeftAttach = ((uint)(2));
 		w34.RightAttach = ((uint)(3));
 		this.vbox1.Add (this.table1);
@@ -270,13 +270,13 @@ public partial class MainWindow
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		this.buttonNuevoPedido.Clicked += new global::System.EventHandler (this.OnButtonNuevoPedidoClicked);
 		this.botonticket.Clicked += new global::System.EventHandler (this.OnBotonticketClicked);
-		this.button9.Clicked += new global::System.EventHandler (this.OnButton9Clicked);
 		this.botonDesayunoPopular.Clicked += new global::System.EventHandler (this.OnBotonDesayunoPopularClicked);
 		this.botonBolleriaSalada.Clicked += new global::System.EventHandler (this.OnBotonBolleriaSaladaClicked);
 		this.botonBolleriaDulce.Clicked += new global::System.EventHandler (this.OnBotonBolleriaDulceClicked);
 		this.botonBebidasFrias.Clicked += new global::System.EventHandler (this.OnBotonBebidasFriasClicked);
 		this.BotonBebidasCalientes.Clicked += new global::System.EventHandler (this.OnBotonBocadillosClicked);
 		this.botonBebidasCalientes.Clicked += new global::System.EventHandler (this.OnBotonBebidasCalientesClicked);
+		this.botonAyuda.Clicked += new global::System.EventHandler (this.OnBotonAyudaClicked);
 		this.botonAlmuerzoParte.Clicked += new global::System.EventHandler (this.OnBotonAlmuerzoParteClicked);
 		this.botonAlmuerzoCompleto.Clicked += new global::System.EventHandler (this.OnBotonAlmuerzoCompletoClicked);
 	}

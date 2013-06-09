@@ -35,12 +35,11 @@ namespace ProyectoCafeteria
 				
 			IDataReader dataReader = dbCommand.ExecuteReader ();
 			
-			//llamo al método llenarTablaBebidas de la clase LlenarTreeViewBebidas, para que me llene el treeView con los datos obtenedo de la consulta de la BBDD
-			//LlenarTreeViewBebidas.llenarTablaBebidas(treeView, dataReader);
 			
 			//Aquí creamos un objeto de la clase RellenarTreeView y le pasamos a la clase el treeView y el dataReader
 			RellenarTreeView rellenar =new RellenarTreeView();
 			rellenar.llenarTreeView(treeView, dataReader);
+			
 			//recogemos el listStore que usamos en la clase RellenarTreeView, para ser usada en los los métodos en esa clase
 			listStore = rellenar.get_ListStore();
 			
@@ -72,10 +71,7 @@ namespace ProyectoCafeteria
 					string precio = (string)listStore.GetValue(iter,3);
 					string cantidad = (string)listStore.GetValue(iter,4);
 					
-				/*	Console.WriteLine("Nombre :" + nombre);
-					Console.WriteLine("Tipo :" + tamano);
-					Console.WriteLine("Precio :" + precio);
-					Console.WriteLine("Cantidad :" + cantidad);*/
+				
 
 					if(!cantidad.Equals("0"))
 					{
@@ -101,7 +97,7 @@ namespace ProyectoCafeteria
 		
 		protected void OnBotonEliminarClicked (object sender, System.EventArgs e)
 		{
-			//throw new System.NotImplementedException ();
+			
 			TreeIter treeIter;
 			treeView.Selection.GetSelected(out treeIter);
 			treeView.Model.SetValue(treeIter, 4, "0");

@@ -16,7 +16,7 @@ namespace ProyectoCafeteria
 		}
 		public  void llenarTreeView(TreeView treeView, IDataReader dataReader) 
 		{	
-			//TreeViewExtensions.ClearColumns (treeView);
+			
 			AppendColumns (treeView, dataReader);	//hacer cabecera	
 			Type[] types = GetTypes (typeof(string), dataReader.FieldCount+1);
 			
@@ -80,4 +80,3 @@ namespace ProyectoCafeteria
 		}
 	}
 }
-

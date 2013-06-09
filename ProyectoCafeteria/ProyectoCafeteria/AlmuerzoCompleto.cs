@@ -61,17 +61,13 @@ namespace ProyectoCafeteria
 			comboboxBebida.Active= 0;
 			
 			
-			//onsole.WriteLine(valor);
-			
-			
 			
 		}
 		public void cargarComboBocadillo(){
 			
 			int cont=0;
 			int index = 0;
-			//string valorCafe = comboboxCafe.value();
-			//Console.WriteLine(valorCafe);
+			
 			
 			IDbCommand dbCommand = dbConnection.CreateCommand ();
 			dbCommand.CommandText = "select nombre from bocadillos";
@@ -100,8 +96,6 @@ namespace ProyectoCafeteria
 		{
 			int cont=0;
 			int index = 0;
-			//string valorCafe = comboboxCafe.value();
-			//Console.WriteLine(valorCafe);
 			
 			IDbCommand dbCommand = dbConnection.CreateCommand ();
 			dbCommand.CommandText = "select nombre from bebidascalientes";
@@ -133,8 +127,7 @@ namespace ProyectoCafeteria
 		{
 			int cont=0;
 			int index = 0;
-			/*double valorPrecio = comboboxPrecio.value();
-			Console.WriteLine(valorPrecio);*/
+			
 			
 			IDbCommand dbCommand = dbConnection.CreateCommand ();
 			dbCommand.CommandText = "select precio from almuerzocompleto";
