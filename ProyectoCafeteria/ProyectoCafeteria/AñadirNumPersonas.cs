@@ -25,8 +25,7 @@ namespace ProyectoCafeteria
 			MainWindow.HasIniciadoPedido = true; //Cuando le demos a aceptar entonces ya habremos iniciado sesion. 
 
 
-			//string connectionString = "Server=localhost;Database=dbcafeteria;User Id=dbcafeteria;Password=dbcafeteria";
-			//ApplicationContext.Instance.DbConnection = new NpgsqlConnection(connectionString);			
+					
 			dbConnection = ApplicationContext.Instance.DbConnection;
 			
 			int maximo=0;
@@ -40,10 +39,10 @@ namespace ProyectoCafeteria
 			if(datareader.Read ()){
 			
 				maximo = datareader.GetInt32(0);
-				//Console.WriteLine(maximo);
+				
 			}
 			
-			//Console.WriteLine(numPersonas);
+			
 
 			calculoMesa(numPersonas,maximo);
 			this.Destroy();

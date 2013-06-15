@@ -9,7 +9,7 @@ using System.Collections.Generic;
 namespace ProyectoCafeteria
 {
 	public partial class LlenarTreeViewBebidas : Gtk.Window
-	{	//private ListStore listStore;//listStore que utilizo para todos los métodos.
+	{	
 		public LlenarTreeViewBebidas () : 
 				base(Gtk.WindowType.Toplevel)
 		{
@@ -17,7 +17,7 @@ namespace ProyectoCafeteria
 		}
 		public static void llenarTablaBebidas(TreeView treeView, IDataReader dataReader) 
 		{	
-			//TreeViewExtensions.ClearColumns (treeView);
+			
 			TreeViewExtension.AppendColumns (treeView, dataReader);	//hacer cabecera	
 			Type[] types = GetTypes (typeof(string), dataReader.FieldCount+1);
 			

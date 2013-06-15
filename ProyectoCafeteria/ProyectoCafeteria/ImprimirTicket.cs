@@ -32,8 +32,7 @@ namespace ProyectoCafeteria
 			dbCommand.CommandText = 
 				"delete from pedidos ";
 			
-			//IDataReader datareader = dbCommand.ExecuteReader ();
-			//datareader.Close ();
+			
 			
 			totalMain.Markup = "<span size='xx-large' weight='bold'>   Total: 0,0 Euros</span>";
 			botonNuevoPedido.Visible=true;

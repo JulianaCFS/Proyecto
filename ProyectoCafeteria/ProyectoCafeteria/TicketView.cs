@@ -23,7 +23,7 @@ namespace ProyectoCafeteria
 			
 			dbConnection = ApplicationContext.Instance.DbConnection;
 			dbCommand = dbConnection.CreateCommand ();
-			//dbConnection.Open ();
+			
 			
 			//hacer la consulta bd
 			
